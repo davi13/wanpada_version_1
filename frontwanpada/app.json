@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "frontwanpada",
+    "description": "A very interesting project.",
+    "slug": "frontwanpada",
+    "privacy": "public",
+    "sdkVersion": "28.0.0",
+    "platforms": ["ios", "android"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "xavier-carpentier-sas",
+            "project": "giftedchat",
+            "authToken": "d32ac87517964ac2b5b778bf5c7b544e59dcab60d1df4fafb6fab65a9d8019ff"
+          }
+        }
+      ]
+    }
+  }
+}

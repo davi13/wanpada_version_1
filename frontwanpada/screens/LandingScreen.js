@@ -1,0 +1,304 @@
+import React from 'react';
+import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
+import { Overlay, Input, Button, Divider } from 'react-native-elements';
+import { WebBrowser } from 'expo';
+import { MonoText } from '../components/StyledText';
+import {connect} from 'react-redux'
+import SignUp from '../components/connexion/form';
+import SignIn from '../components/connexion/SignIn';
+
+class LandingScreen extends React.Component {
+
+  constructor() {
+    super();
+    this.returnHome = this.returnHome.bind(this);
+    this.signUp = this.signUp.bind(this);
+    this.signIn = this.signIn.bind(this);
+    this.SubmitsignUp = this.SubmitsignUp.bind(this);
+    this.SubmitsignIn = this.SubmitsignIn.bind(this);
+    this.state = {isVisible : false, signUp: false, signIn: false, }
+  }
+  returnHome(){
+
+    console.log("Hello World=============>");
+    this.setState({isVisible: false})
+
+  }
+
+  signUp(){
+    console.log("Click Button Inscription");
+    this.setState({isVisible: true, signUp: true, signIn: false})
+  }
+
+  signIn(){
+    console.log("Click Button Connexion");
+    this.setState({isVisible: true, signIn: true, signUp: false})
+  }
+
+  ///////////////////
+  //METHODE GET/////
+  //////////////////
+  // SubmitsignUp(value) {
+  //   console.log('============>' +value);
+  //   var ctx = this;
+  //   fetch('http://10.2.1.38:3000/signup?nom='+value.nom+'&prenom='+value.prenom+'&email='+value.email+'&password='+value.password)
+  //   .then((response)=>{
+
+  //     return response.JSON(response);  
+
+  //   })
+  //   .then((data) => {
+
+  //     if(data._id){
+
+  //       ctx.props.onSigninClick(data); 
+
+  //     }
+
+  //     ctx.props.onSigninClick(data); 
+  //     console.log(data);
+  // });
+  
+
+  //   this.setState({
+  //     isVisible : false
+  //   })
+  // }
+//////////////////////////////////
+///   FORMULAIRE INSCRIPTION   //
+/////////////////////////////////
+
+  SubmitsignUp(value) {
+    console.log('============>' +value);
+    var display = false;
+    var ctx = this;
+    fetch('http://10.2.1.38:3000/signup', {
+      method: 'POST',
+      headers: {'Content-Type':'application/x-www-form-urlencoded'},
+      body: 'nom='+value.Nom+'&prenom='+value.Prenom+'&email='+value.Email+'&password='+value.Password
+        
+        // JSON.stringify({
+        //   nom: value.Nom,
+        //   prenom: value.Prenom,
+        //   email: value.Email,
+        //   password: value.Password
+        // })
+    })
+    .then((response) => {
+      return response.json();  
+    })
+    .then((data) => {
+
+      if(data._id){
+        display = true;
+        ctx.props.onSignUpClick(data, display); 
+
+      }
+
+      ctx.props.onSignUpClick(data); 
+      console.log(data);
+  }).catch(function(error) {
+    console.log('Request failed', error)
+});;
+  
+
+    this.setState({
+      isVisible : false
+    })
+  }
+
+
+////////////////////////////////
+///   FORMULAIRE CONNEXION   //
+///////////////////////////////
+  SubmitsignIn(value) {
+    var display = false;
+    var ctx = this;
+    fetch('http://10.2.1.38:3000/signIn', {
+      method: 'POST',
+      headers: {'Content-Type':'application/x-www-form-urlencoded'},
+      body: 'email='+value.Email+'&password='+value.Password
+    })
+    .then((response) => {
+      return response.json();  
+    })
+    .then((data) => {
+
+      if(data._id){
+
+        display = true;
+        ctx.props.onSigninClick(data, display);
+      
+         
+
+      }
+
+      ctx.props.onSigninClick(data); 
+      console.log(data);
+
+  }).catch(function(error) {
+    console.log('Request failed', error)
+});
+    this.setState({
+      isVisible : false,
+
+    })
+  }
+
+  
+  render() {
+   
+    let sign = '';
+
+    if(this.state.signUp == true) {
+        console.log("je suis rentré dans la condition de SIGNUP");
+      sign = <SignUp onSubmit={this.SubmitsignUp} /> 
+    }
+    if(this.state.signIn == true) {
+      console.log("je suis rentré dans la condition de SIGNIN");
+      sign = <SignIn onSubmit={this.SubmitsignIn} />
+    }
+    return (
+      <ImageBackground style={{flex: 1}} source={require("../assets/images/backgroundofficial.jpg")}>
+        <View style={{flex:1,justifyContent: 'center',alignItems: 'center' }}>
+              <Text h1 style={{color: "#FFFFFF", fontSize: 50, fontWeight: "700", marginBottom: 20}}> WanPada</Text>
+              <Text h3 style={{color: "#FFFFFF", fontSize: 20, fontWeight: "500", marginBottom: 50}}> Le Conseil au bout des doigts</Text>
+              <Button title="Connexion"
+                      textStyle={{ fontWeight: "300", color: "#FFFFFF" }}
+                      buttonStyle={{
+                      backgroundColor: "#00A6FB",
+                      width: 250,
+                      height: 45,
+                      borderColor: "transparent",
+                      borderWidth: 0,
+                      borderRadius: 20
+                    }} onPress={this.signIn/*() => this.setState({isVisible: true})*/}></Button>
+              <Button title="Inscription"
+                      textStyle={{ fontWeight: "300" }}
+                      buttonStyle={{
+                      backgroundColor: "#00A6FB",
+                      width: 250,
+                      height: 45,
+                      borderColor: "transparent",
+                      borderWidth: 0,
+                      borderRadius: 20,
+                      marginTop: 20, 
+                    }} onPress={ this.signUp/*() => this.setState({isVisible: true})*/}></Button>
+              <Overlay   isVisible = {this.state.isVisible}>
+                <View style={{flex:1,justifyContent: 'center',alignItems: 'center' }}>
+                  {sign}
+                </View>
+              </Overlay>
+              
+        </View>
+      </ImageBackground>
+    );
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onSigninClick: function(user, display) {
+        dispatch( {type: 'userSignin', user, display } );
+    },
+    onSignUpClick: function(user, display) {
+        dispatch( {type: 'userSignUp', user, display } );
+    }
+  }
+}
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(LandingScreen);
+
+
+
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//   },
+//   developmentModeText: {
+//     marginBottom: 20,
+//     color: 'rgba(0,0,0,0.4)',
+//     fontSize: 14,
+//     lineHeight: 19,
+//     textAlign: 'center',
+//   },
+//   contentContainer: {
+//     paddingTop: 30,
+//   },
+//   welcomeContainer: {
+//     alignItems: 'center',
+//     marginTop: 10,
+//     marginBottom: 20,
+//   },
+//   welcomeImage: {
+//     width: 100,
+//     height: 80,
+//     resizeMode: 'contain',
+//     marginTop: 3,
+//     marginLeft: -10,
+//   },
+//   getStartedContainer: {
+//     alignItems: 'center',
+//     marginHorizontal: 50,
+//   },
+//   homeScreenFilename: {
+//     marginVertical: 7,
+//   },
+//   codeHighlightText: {
+//     color: 'rgba(96,100,109, 0.8)',
+//   },
+//   codeHighlightContainer: {
+//     backgroundColor: 'rgba(0,0,0,0.05)',
+//     borderRadius: 3,
+//     paddingHorizontal: 4,
+//   },
+//   getStartedText: {
+//     fontSize: 17,
+//     color: 'rgba(96,100,109, 1)',
+//     lineHeight: 24,
+//     textAlign: 'center',
+//   },
+//   tabBarInfoContainer: {
+//     position: 'absolute',
+//     bottom: 0,
+//     left: 0,
+//     right: 0,
+//     ...Platform.select({
+//       ios: {
+//         shadowColor: 'black',
+//         shadowOffset: { height: -3 },
+//         shadowOpacity: 0.1,
+//         shadowRadius: 3,
+//       },
+//       android: {
+//         elevation: 20,
+//       },
+//     }),
+//     alignItems: 'center',
+//     backgroundColor: '#fbfbfb',
+//     paddingVertical: 20,
+//   },
+//   tabBarInfoText: {
+//     fontSize: 17,
+//     color: 'rgba(96,100,109, 1)',
+//     textAlign: 'center',
+//   },
+//   navigationFilename: {
+//     marginTop: 5,
+//   },
+//   helpContainer: {
+//     marginTop: 15,
+//     alignItems: 'center',
+//   },
+//   helpLink: {
+//     paddingVertical: 15,
+//   },
+//   helpLinkText: {
+//     fontSize: 14,
+//     color: '#2e78b7',
+//   },
+// });
