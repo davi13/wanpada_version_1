@@ -44,21 +44,21 @@ class LandingScreen extends React.Component {
   //   fetch('http://10.2.1.38:3000/signup?nom='+value.nom+'&prenom='+value.prenom+'&email='+value.email+'&password='+value.password)
   //   .then((response)=>{
 
-  //     return response.JSON(response);  
+  //     return response.JSON(response);
 
   //   })
   //   .then((data) => {
 
   //     if(data._id){
 
-  //       ctx.props.onSigninClick(data); 
+  //       ctx.props.onSigninClick(data);
 
   //     }
 
-  //     ctx.props.onSigninClick(data); 
+  //     ctx.props.onSigninClick(data);
   //     console.log(data);
   // });
-  
+
 
   //   this.setState({
   //     isVisible : false
@@ -72,11 +72,11 @@ class LandingScreen extends React.Component {
     console.log('============>' +value);
     var display = false;
     var ctx = this;
-    fetch('http://10.2.1.38:3000/signup', {
+    fetch('http://10.2.1.197:3000/signup', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
       body: 'nom='+value.Nom+'&prenom='+value.Prenom+'&email='+value.Email+'&password='+value.Password
-        
+
         // JSON.stringify({
         //   nom: value.Nom,
         //   prenom: value.Prenom,
@@ -85,22 +85,22 @@ class LandingScreen extends React.Component {
         // })
     })
     .then((response) => {
-      return response.json();  
+      return response.json();
     })
     .then((data) => {
 
       if(data._id){
         display = true;
-        ctx.props.onSignUpClick(data, display); 
+        ctx.props.onSignUpClick(data, display);
 
       }
 
-      ctx.props.onSignUpClick(data); 
+      ctx.props.onSignUpClick(data);
       console.log(data);
   }).catch(function(error) {
     console.log('Request failed', error)
 });;
-  
+
 
     this.setState({
       isVisible : false
@@ -112,15 +112,16 @@ class LandingScreen extends React.Component {
 ///   FORMULAIRE CONNEXION   //
 ///////////////////////////////
   SubmitsignIn(value) {
+    console.log(value);
     var display = false;
     var ctx = this;
-    fetch('http://10.2.1.38:3000/signIn', {
+    fetch('http://10.2.1.197:3000/signIn', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
       body: 'email='+value.Email+'&password='+value.Password
     })
     .then((response) => {
-      return response.json();  
+      return response.json();
     })
     .then((data) => {
 
@@ -128,12 +129,12 @@ class LandingScreen extends React.Component {
 
         display = true;
         ctx.props.onSigninClick(data, display);
-      
-         
+
+
 
       }
 
-      ctx.props.onSigninClick(data); 
+      ctx.props.onSigninClick(data);
       console.log(data);
 
   }).catch(function(error) {
@@ -145,14 +146,14 @@ class LandingScreen extends React.Component {
     })
   }
 
-  
+
   render() {
-   
+
     let sign = '';
 
     if(this.state.signUp == true) {
         console.log("je suis rentré dans la condition de SIGNUP");
-      sign = <SignUp onSubmit={this.SubmitsignUp} /> 
+      sign = <SignUp onSubmit={this.SubmitsignUp} />
     }
     if(this.state.signIn == true) {
       console.log("je suis rentré dans la condition de SIGNIN");
@@ -182,14 +183,14 @@ class LandingScreen extends React.Component {
                       borderColor: "transparent",
                       borderWidth: 0,
                       borderRadius: 20,
-                      marginTop: 20, 
+                      marginTop: 20,
                     }} onPress={ this.signUp/*() => this.setState({isVisible: true})*/}></Button>
               <Overlay   isVisible = {this.state.isVisible}>
                 <View style={{flex:1,justifyContent: 'center',alignItems: 'center' }}>
                   {sign}
                 </View>
               </Overlay>
-              
+
         </View>
       </ImageBackground>
     );

@@ -26,33 +26,33 @@ export default class App extends React.Component {
 
 
 
-  render() { 
+  render() {
 
     return (
       <Provider store={store}>
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-           <Display/>
+          <Display/>
         </View>
-      </Provider>  
+      </Provider>
     );
   }
- 
+
 
 
 
     // console.log(this.props.user);
-   
+
     //   if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
     //     return (
-  
+
     //           <AppLoading
     //             startAsync={this._loadResourcesAsync}
     //             onError={this._handleLoadingError}
     //             onFinish={this._handleFinishLoading}
     //           />
-             
-       
+
+
     //     );
     //   } else {
     //     var display=null;
