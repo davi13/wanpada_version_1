@@ -15,18 +15,31 @@ mongoose.connect('mongodb://wanpada1:wanpada1@ds161790.mlab.com:61790/wanpada',
 );
 
 var userSchema = mongoose.Schema({
-  nom: String,
-  prenom: String,
-  password: String,
-  email: String,
-
+  nom: {type: String, required: true, min: 3, max: 10},
+  prenom: {type: String, required: true, min: 3, max: 10},
+  password: {type: String, required: true},
+  competences: {type: String, required: true},
+  content: {type: String, required: true},
+  email: {
+    type: String,
+    trim: true,
+    lowercase: true,
+    unique: true,
+    required: 'Email address is required',
+    match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+    }
 });
 
 var UserModel = mongoose.model('users', userSchema);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  UserModel.find(
+    (err, users) => {
+      console.log(users)
+      res.json(users)
+    }
+  );
 });
 ///////////////////// INSCRIPTION ///////////////////////////////
 router.post('/signup', function(req, res, next){
@@ -40,31 +53,40 @@ router.post('/signup', function(req, res, next){
     email: req.body.email,
     password :hashedPassword
   });
-  newUser.save(function(err, user){
-  res.json(user);
-  });
-
+  newUser.save(
+    function(err, user){
+      if(err) {
+        res.json(false);
+      }
+      else {
+        res.json(user);
+      }
+    }
+  );
 });
 /////////////////////FIN INSCRIPTION///////////////////////////////
 
 
 /////////////////////CONNEXION////////////////////////////////////
-router.post('/signIn', function(req, res, next) {
-  UserModel.find(
-    {email: req.body.email, password: req.body.password},
-    function (err, user){
-      console.log(user);
-      if(user.length > 0) {
-        res.json(user);
+router.post('/signin', function(req, res, next) {
+  if(req.body.email == '' || req.body.password) {
+    res.json(false);
+  }
+  else{
+    UserModel.find(
+      {email: req.body.email, password: req.body.password},
+      function (err, user){
+        console.log(user);
+        if(!err) {
+          res.json(user);
+        }
+        else{
+          res.json('desole Mais un error se produit');
+        }
       }
-      else{
-        console.log('desole Mais un error se produit');
-      }
-    }
-  )
+    );
+  }
 });
-
-
 
 ///////////////FIN CONNEXION//////////////////////////////////////
 
@@ -77,30 +99,38 @@ var MessageSchema = mongoose.Schema({
     message: String,
 });
 
-
-
 var MessageModel = mongoose.model('messages', MessageSchema);
 
-router.post('/sendmessage', function(req, res, next) {
-  var newMessage = new MessageModel
-    ({
-      conversationId: req.body.conversationId,
-      sendingUserId: req.body.sendingUserId,
-      sendingUsername: req.body.sendingUsername,
-      receivingUserId: req.body.receivingUsername,
-      receivingUsername: req.body.receivingUsername,
-      message: req.body.message,
-    })
 
-      newMessage.save(function(error, message) {
-        res.json(message);
-      })
+router.post('/sendmessage', function(req, res, next) {
+  var newMessage = new MessageModel({
+    conversationId: req.body.conversationId,
+    sendingUserId: req.body.sendingUserId,
+    sendingUsername: req.body.sendingUsername,
+    receivingUserId: req.body.receivingUsername,
+    receivingUsername: req.body.receivingUsername,
+    message: req.body.message,
+  })
+  newMessage.save(function(error, message) {
+    res.json(message);
+  })
 });
 
 
+/****** start router search*******/
 router.post('/search',
-  (req, res) => {
-	console.log(req.body);
+  (req, res, next) => {
+    UserModel.find(
+      {competences: req.search},
+      (err, users) =>{
+        if(err) {
+          res.json(false)
+        }
+        else {
+          res.json(users)
+        }
+      }
+    )
   }
 );
 
