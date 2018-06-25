@@ -9,8 +9,6 @@ import messagesData from '../data';
 import NavBar from '../NavBar';
 import CustomView from '../CustomView';
 
-import ChatSave from '../components/ChatSave';
-
 Sentry.config('https://2a164b1e89424a5aafc186da811308cb@sentry.io/276804').install();
 
 const styles = StyleSheet.create({
@@ -47,22 +45,20 @@ export default class Chat extends Component {
       messages: GiftedChat.append(previousState.messages, [{ ...messages[0], sent: true, received: true }]),
       step,
     }));
-    // setTimeout(() => this.botSend(step), 1200 + Math.round(Math.random() * 1000));
-    // console.log(messages);
+    setTimeout(() => this.botSend(step), 1200 + Math.round(Math.random() * 1000));
   }
 
-  // botSend(step = 0) {
-  //   const newMessage = messagesData
-  //     .reverse()
-  //     .filter(filterBotMessages)
-  //     .find(findStep(step));
-  //   if (newMessage) {
-  //     this.setState((previousState) => ({
-  //       messages: GiftedChat.append(previousState.messages, newMessage),
-  //     }));
-  //     // console.log(newMessage)
-  //   }
-  // }
+  botSend(step = 0) {
+    const newMessage = messagesData
+      .reverse()
+      .filter(filterBotMessages)
+      .find(findStep(step));
+    if (newMessage) {
+      this.setState((previousState) => ({
+        messages: GiftedChat.append(previousState.messages, newMessage),
+      }));
+    }
+  }
 
   parsePatterns(linkStyle) {
     return [
@@ -77,13 +73,9 @@ export default class Chat extends Component {
     // if (!this.state.appIsReady) {
     //   return <AppLoading />;
     // }
-    messageToSave = this.state.messages[0];
-    console.log(messageToSave);
-
     return (
       <View style={{flex: 1}} accessible accessibilityLabel="main" testID="main">
         <NavBar />
-        <ChatSave />
         <GiftedChat
           messages={this.state.messages}
           onSend={this.onSend}
@@ -95,8 +87,6 @@ export default class Chat extends Component {
           parsePatterns={this.parsePatterns}
         />
       </View>
-
-
     );
   }
 

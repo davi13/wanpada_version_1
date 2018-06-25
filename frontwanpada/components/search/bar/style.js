@@ -4,6 +4,14 @@ import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: 230
+  },
+  containerBar: {
+    flexDirection: 'row',
+    width: 320
+  },
+  containerButton: {
+    backgroundColor: "transparent",
+    width: 40,
+    height: 40
   }
 })

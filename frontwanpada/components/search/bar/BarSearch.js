@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import { reduxForm, Field } from 'redux-form';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Input } from 'react-native-elements';
+import { Input, Button } from 'react-native-elements';
 import { styles } from './style'
+
+function textInput(props) {
+  const { input } = props;
+  return (
+    <Input
+      onChangeText={input.onChange}
+      value={input.value}
+      underlineColorAndroid={'transparent'}
+      placeholder='Recherche ....'
+    />
+  );
+}
 
 class BarSearch extends Component {
   constructor(props) {
@@ -14,18 +28,30 @@ class BarSearch extends Component {
 
   render() {
     return(
-      <Input
-        placeholder='Recherche ....'
-        leftIcon={
-         <Icon
-           name='search'
-           size={24}
-           color='white'
-         />
-       }
-      />
+      <View style={ styles.containerBar }>
+        <Field
+          name="search"
+          component={textInput}
+        />
+
+        <Button
+          onPress={this.props.handleSubmit}
+          textStyle={{ fontWeight: "700" }}
+          icon={
+            <Icon
+             name='search'
+             size={24}
+             color='white'
+            />
+          }
+          buttonStyle={styles.containerButton}
+          containerStyle={{ marginTop: 10 }}
+        />
+      </View>
     );
   }
 }
 
-export default BarSearch;
+export default reduxForm({
+  form: 'bar-search'
+})(BarSearch);
