@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Image, Text, View, } from 'react-native';
 import { WebBrowser } from 'expo';
-import { Badge, Rating } from 'react-native-elements'
+import { Badge } from 'react-native-elements'
 import { Ionicons } from '@expo/vector-icons';
 
 import { styles } from '../../../styles/styleSearch';
@@ -41,65 +41,42 @@ export default class CardSearch extends Component {
               <Image style={styles.containerImage}
                 source={require("../../../assets/images/Avatar.jpg")}
               />
-              <View>
-
-                <Text h1 style={styles.title_profile}>
+              <View h1 style={styles.title_profile}>
+                <Text>
                   {this.props.name}
                 </Text>
-                <Rating
-
-                type="star"
-                fractions={1}
-                imageSize={20}
-                style={{ paddingVertical: 10 }}
-                />
-
+                <Text>
+                  <Ionicons name="md-star" size={20} color="#f7e28f" />
+                </Text>
               </View>
             </View>
           </View>
-          <View style={{position: 'absolute', top: 20, right: 15}}>
-
-          <Badge containerStyle={styles.dist_profile}
-            value={this.props.dist}
-            textStyle={{ color: 'white' }}
-          />
-
+          <View style={{paddingRight: 5}}>
+            <Text h1 style={styles.dist_profile}> {this.props.dist} </Text>
           </View>
         </View>
 
         <View style={{ marginTop: 10, marginLeft: 10, marginRight: 10, flexDirection: 'row'}}>
-          <Badge containerStyle={{   width: 100,
-            backgroundColor: '#00A6FB',
-            marginRight: 10,
-            height: 20,
-            borderRadius: 8}}>
-            <Text style={styles.text}>Competences</Text>
+          <Badge containerStyle={{ backgroundColor: '#00A6FB', width: 120, marginRight: 5}}>
+            <Text TextStyle={{fontSize: 7, color: '#FFFFFF'}}>Competences</Text>
           </Badge>
-          <Badge containerStyle={{   width: 100,
-            backgroundColor: '#00A6FB',
-            marginRight: 10,
-            height: 20,
-            borderRadius: 8}}>
-            <Text style={styles.text}>Compétences</Text>
+          <Badge containerStyle={{ backgroundColor: '#00A6FB', width: 80, marginRight: 5}}>
+            <Text Style={{fontSize: 7, color: '#FFFFFF'}}>Comp</Text>
           </Badge>
-          <Badge containerStyle={{   width: 100,
-            backgroundColor: '#00A6FB',
-            marginRight: 10,
-            height: 20,
-            borderRadius: 8}}>
-            <Text style={styles.text}>Competences</Text>
+          <Badge containerStyle={{ backgroundColor: '#00A6FB', width: 120, marginRight: 5}}>
+            <Text TextStyle={{fontSize: 7, color: '#FFFFFF'}}>Competences</Text>
           </Badge>
         </View>
 
         <View style={styles.iconLike}>
-          <View style={{marginRight:10}}>
+          <Text>
             <Ionicons name="md-heart" size={20} color={this.state.color} key
               onPress={this.HandleOnPressLike}
             />
-          </View>
-
-          <Ionicons name="md-chatbubbles" size={20} color="#333"  />
-
+          </Text>
+          <Text>
+            <Ionicons name="md-chatbubbles" size={20} color="#333" />
+          </Text>
         </View>
       </View>
     );
