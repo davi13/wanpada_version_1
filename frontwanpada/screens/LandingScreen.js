@@ -52,6 +52,11 @@ class LandingScreen extends React.Component {
       return response.json();
     })
     .then((data) => {
+      if(data == false) {
+        this.setState({msgErr: 'Mince il y a des erreurs au niveau des champs', notConnected: true})
+      }else{
+
+      
       if(data._id){
         display = true;
         ctx.props.onSignUpClick(data, display);
@@ -61,6 +66,8 @@ class LandingScreen extends React.Component {
       }
 
       console.log(data);
+      }
+       
     })
     .catch(function(error) {
       console.log('Request failed', error)
@@ -86,6 +93,7 @@ class LandingScreen extends React.Component {
       return response.json();
     })
     .then((data) => {
+      console.log('======================>',data);
       if(data == false) {
         this.setState({msgErr: 'Mince il y a des erreurs au niveau des champs', notConnected: true})
       }
