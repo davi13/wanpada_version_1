@@ -9,10 +9,25 @@ function textInput(props) {
   const { input } = props;
   return (
     <View>
-      <Text style={{color: '#dddddd'}}>{input.name}</Text>
+      <Text style={{color: '#dddddd', marginTop: 8}}>{input.name}</Text>
       <Input
         onChangeText={input.onChange}
         value={input.value}
+      />
+    </View>
+  );
+}
+
+function passwordInput(props) {
+  const { input } = props;
+  return (
+    <View>
+      <Text style={{color: '#dddddd', marginTop: 8 }}>{input.name}</Text>
+      <Input
+        onChangeText={input.onChange}
+        value={input.value}
+        secureTextEntry={true}
+        password={true}
       />
     </View>
   );
@@ -37,7 +52,7 @@ class SignUp extends React.Component {
           component={textInput}
         />
          <Field name="Password"
-          component={textInput}
+          component={passwordInput}
         />
 
         <Button
