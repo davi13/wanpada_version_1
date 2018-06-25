@@ -1,6 +1,6 @@
 import React from 'react';
-import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
-import { Overlay, Input, Button, Divider } from 'react-native-elements';
+import {Modal, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
+import { Overlay, Input, Button, Divider, Icon} from 'react-native-elements';
 import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 import {connect} from 'react-redux'
@@ -16,27 +16,31 @@ class LandingScreen extends React.Component {
     this.signIn = this.signIn.bind(this);
     this.SubmitsignUp = this.SubmitsignUp.bind(this);
     this.SubmitsignIn = this.SubmitsignIn.bind(this);
-    this.state = {isVisible : false, signUp: false, signIn: false, msgErr: '', notConnected: false }
+    this.state = {
+      isVisible : false,
+      signUp: false,
+      signIn: false,
+      msgErr: '',
+      notConnected: false
+    }
   }
 
   returnHome(){
-    console.log("Hello World=============>");
     this.setState({isVisible: false})
   }
 
   signUp(){
-    console.log("Click Button Inscription");
+
     this.setState({isVisible: true, signUp: true, signIn: false})
   }
 
   signIn(){
-    console.log("Click Button Connexion");
+
     this.setState({isVisible: true, signIn: true, signUp: false})
   }
 
 
   SubmitsignUp(value) {
-    console.log('============>' +value);
     var display = false;
     var ctx = this;
     fetch('http://192.168.1.44:3000/signup', {
@@ -48,6 +52,11 @@ class LandingScreen extends React.Component {
       return response.json();
     })
     .then((data) => {
+      if(data == false) {
+        this.setState({msgErr: 'Mince il y a des erreurs au niveau des champs', notConnected: true})
+      }else{
+
+
       if(data._id){
         display = true;
         ctx.props.onSignUpClick(data, display);
@@ -57,6 +66,8 @@ class LandingScreen extends React.Component {
       }
 
       console.log(data);
+      }
+
     })
     .catch(function(error) {
       console.log('Request failed', error)
@@ -82,6 +93,7 @@ class LandingScreen extends React.Component {
       return response.json();
     })
     .then((data) => {
+      console.log('======================>',data);
       if(data == false) {
         this.setState({msgErr: 'Mince il y a des erreurs au niveau des champs', notConnected: true})
       }
@@ -149,12 +161,23 @@ class LandingScreen extends React.Component {
                       borderRadius: 20,
                       marginTop: 20,
                     }} onPress={ this.signUp/*() => this.setState({isVisible: true})*/}></Button>
-              <Overlay   isVisible = {this.state.isVisible}>
-                <View style={{flex:1,justifyContent: 'center',alignItems: 'center' }}>
-                  {sign}
-                </View>
-              </Overlay>
-
+              <Modal animationType='slide' transparent={true}  visible = {this.state.isVisible}>
+                <Overlay isVisible={this.state.isVisible}>
+                  <View style={{flex:1,justifyContent: 'center',alignItems: 'center' }}>
+                    <View style={{position: 'absolute', top: 0, right: 0}}>
+                      <Text onPress={this.returnHome}>
+                        <Icon
+                        raised
+                        name='ios-close'
+                        type='ionicon'
+                        color='#00A6FB'
+                        />
+                      </Text>
+                    </View>
+                    {sign}
+                  </View>
+                </Overlay>
+              </Modal>
         </View>
       </ImageBackground>
     );
