@@ -7,5 +7,8 @@ export const styles = StyleSheet.create({
   },
   containerIcon: {
     fontSize: 40,
+  },
+  containerButton: {
+    paddingLeft: 5
   }
 })

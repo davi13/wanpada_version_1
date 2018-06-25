@@ -36,7 +36,6 @@ class BarSearch extends Component {
 
         <Button
           onPress={this.props.handleSubmit}
-          textStyle={{ fontWeight: "700" }}
           icon={
             <Icon
              name='search'
