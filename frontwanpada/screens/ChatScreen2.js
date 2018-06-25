@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import { Asset, AppLoading } from 'expo';
 import { View, StyleSheet, Linking } from 'react-native';
 
+import { GiftedChat } from 'react-native-gifted-chat';
+import Sentry from 'sentry-expo';
+
+import messagesData from '../data';
+import NavBar from '../NavBar';
 import CustomView from '../CustomView';
+
 
 Sentry.config('https://2a164b1e89424a5aafc186da811308cb@sentry.io/276804').install();
 
