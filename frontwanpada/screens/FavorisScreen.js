@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
+import HeaderApp from '../components/HeaderApp';
 import { MonoText } from '../components/StyledText';
 
 export default class FavorisScreen extends React.Component {
@@ -22,6 +23,8 @@ export default class FavorisScreen extends React.Component {
     return (
       <ImageBackground style={{flex: 1}} source={require("../assets/images/backgroundofficial.jpg")}>
         <View style={styles.container}>
+          <HeaderApp title="Favories" />
+
           <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
 
             <Text>

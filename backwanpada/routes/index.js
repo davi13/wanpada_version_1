@@ -14,7 +14,9 @@ var userSchema = mongoose.Schema({
   prenom: String,
   password: String,
   email: String,
+
 });
+
 var UserModel = mongoose.model('users', userSchema);
 
 /* GET home page. */
@@ -40,27 +42,23 @@ router.post('/signup', function(req, res, next){
 
 /////////////////////CONNEXION////////////////////////////////////
 router.post('/signIn', function(req, res, next) {
-    UserModel.find(
-      {email: req.body.email, password: req.body.password},
-        function (err, user){
-          console.log(user);
-          if(user.length > 0) {
-          res.json(user);
-        
-    }else{
-      console.log('desole Mais un error se produit');
+  UserModel.find(
+    {email: req.body.email, password: req.body.password},
+    function (err, user){
+      console.log(user);
+      if(user.length > 0) {
+        res.json(user);
+      }
+      else{
+        console.log('desole Mais un error se produit');
+      }
     }
-  })                   
+  )
 });
 
 
 
 ///////////////FIN CONNEXION//////////////////////////////////////
-
-
-
-
-
 
 var MessageSchema = mongoose.Schema({
     conversationId: String,
@@ -71,11 +69,9 @@ var MessageSchema = mongoose.Schema({
     message: String,
 });
 
+
+
 var MessageModel = mongoose.model('messages', MessageSchema);
-
-
-
-
 
 router.post('/sendmessage', function(req, res, next) {
   var newMessage = new MessageModel
@@ -94,5 +90,10 @@ router.post('/sendmessage', function(req, res, next) {
 });
 
 
+router.post('/search',
+  (req, res) => {
+	console.log(req.body);
+  }
+);
 
 module.exports = router;

@@ -1,19 +1,13 @@
 export default function display(state = false, action){
-    if(action.type == 'userSignin'){
+  switch (action.type) {
+    case 'userSignin':
+      return true
+      break;
 
-        return true
-
-    }
-    else if(action.type == 'userSignUp'){
-
-        return true
-    }
-    else if(action.type == 'poweroff'){
-        return false
-    }
-    else{
-
-        return false
-    }
-
+    case 'userSignUp':
+      return true
+    break;
+    default:
+      return state
+  }
 }

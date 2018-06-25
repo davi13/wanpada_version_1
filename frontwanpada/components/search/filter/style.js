@@ -6,6 +6,9 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   containerIcon: {
-    fontSize: 40
+    fontSize: 40,
+  },
+  containerButton: {
+    paddingLeft: 5
   }
 })

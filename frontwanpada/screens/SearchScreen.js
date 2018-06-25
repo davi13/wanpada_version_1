@@ -13,6 +13,7 @@ import { WebBrowser } from 'expo';
 import { Card, ListItem, Avatar, Badge } from 'react-native-elements'
 import { Ionicons } from '@expo/vector-icons';
 
+import HeaderApp from '../components/HeaderApp';
 import { MonoText } from '../components/StyledText';
 import SearchContainer from '../components/search/SearchContainer';
 import CardSearch from '../components/search/cards/CardSearch';
@@ -85,6 +86,7 @@ export default class SearchScreen extends Component {
 
     return (
       <ImageBackground style={styles.container} source={require("../assets/images/backgroundofficial.jpg")}>
+        <HeaderApp title="Recherches" />
         <View style={styles.container}>
           <SearchContainer />
           <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>

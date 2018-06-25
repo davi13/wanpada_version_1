@@ -33,24 +33,25 @@ class PowerOff extends React.Component {
     var display = false;
 
     if (Platform.OS === 'ios') {
-      return (<Ionicons name="ios-power" size={30} color='#D8D8D8' style={{
-          marginRight: 10,
-          marginBottom: 8
-        }} underlayColor="transparent" onPress={() => {
-          this.props.powerOff(display)
-        }}/>);
-
-    } else {
-
-      return (<Ionicons name="ios-power" size={30} color='#D8D8D8' style={{
-          marginRight: 10,
-          marginBottom: 8
-      }} underlayColor="transparent" onPress={() => {
-        this.props.powerOff(display)
-      }}/>);
-
+      return (
+        <Ionicons
+          name="ios-power" size={30}
+          color='#D8D8D8'
+          style={{marginRight: 10, marginBottom: 2}}
+          underlayColor="transparent"
+          onPress={() => this.props.powerOff(display) }/>
+      );
     }
-
+    else {
+      return (
+        <Ionicons
+          name="ios-power" size={30}
+          color='#D8D8D8'
+          style={{marginRight: 10,  marginTop: 10}}
+          underlayColor="transparent"
+          onPress={() => this.props.powerOff(display) }/>
+      );
+    }
   }
 }
 

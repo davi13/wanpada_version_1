@@ -56,7 +56,7 @@ ChatStack.navigationOptions = {
      inactiveTintColor: '#00A6FB',
      labelStyle: {
        fontSize: 10,
-       fontFamily: 'Arial'
+       // fontFamily: 'Arial'
      },
      style: {
        height: 50,
@@ -91,7 +91,7 @@ FavorisStack.navigationOptions = {
      inactiveTintColor: '#00A6FB',
      labelStyle: {
        fontSize: 10,
-       fontFamily: 'Arial'
+       // fontFamily: 'Arial'
      },
      style: {
        height: 50,
@@ -126,7 +126,7 @@ HomeStack.navigationOptions = {
      inactiveTintColor: '#00A6FB',
      labelStyle: {
        fontSize: 10,
-       fontFamily: 'Arial'
+       // fontFamily: 'Arial'
      },
      style: {
        height: 50,
@@ -165,7 +165,7 @@ LandingStack.navigationOptions = {
      inactiveTintColor: '#00A6FB',
      labelStyle: {
        fontSize: 10,
-       fontFamily: 'Arial'
+       // fontFamily: 'Arial'
      },
      style: {
        height: 50,
@@ -204,7 +204,7 @@ SearchStack.navigationOptions = {
      inactiveTintColor: '#00A6FB',
      labelStyle: {
        fontSize: 10,
-       fontFamily: 'Arial'
+       // fontFamily: 'Arial'
      },
      style: {
        height: 50,
@@ -244,7 +244,7 @@ SettingsStack.navigationOptions = {
      inactiveTintColor: '#00A6FB',
      labelStyle: {
        fontSize: 10,
-       fontFamily: 'Arial'
+       // fontFamily: 'Arial'
      },
      style: {
        height: 50,
@@ -284,7 +284,7 @@ Chat1Stack.navigationOptions = {
      inactiveTintColor: '#00A6FB',
      labelStyle: {
        fontSize: 10,
-       fontFamily: 'Arial'
+       // fontFamily: 'Arial'
      },
      style: {
        height: 50,
@@ -313,7 +313,7 @@ Chat2Stack.navigationOptions = {
      inactiveTintColor: '#00A6FB',
      labelStyle: {
        fontSize: 10,
-       fontFamily: 'Arial'
+       // fontFamily: 'Arial'
      },
      style: {
        height: 50,
