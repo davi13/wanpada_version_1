@@ -2,6 +2,11 @@ var express = require('express');
 var router = express.Router();
 var mongoose= require('mongoose');
 var options = { server: { socketOptions: {connectTimeoutMS: 5000 } }};
+////////////////////////////////////////////////////////////
+// J'intègre password avec npm install --save password-hash
+////////////////////////////////////////////////////////////
+var passwordHash = require('password-hash');
+
 mongoose.connect('mongodb://wanpada1:wanpada1@ds161790.mlab.com:61790/wanpada',
    options,
    function(err) {
@@ -26,11 +31,14 @@ router.get('/', function(req, res, next) {
 ///////////////////// INSCRIPTION ///////////////////////////////
 router.post('/signup', function(req, res, next){
   console.log(req.body)
+
+  var hashedPassword = passwordHash.generate(req.body.password);
+
   var newUser = new UserModel({
     nom: req.body.nom,
     prenom: req.body.prenom,
     email: req.body.email,
-    password :req.body.password,
+    password :hashedPassword
   });
   newUser.save(function(err, user){
   res.json(user);
