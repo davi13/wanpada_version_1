@@ -26,10 +26,10 @@ class SignIn extends React.Component {
     return (
       <View >
 
-         <Field name="Email"
+        <Field name="Email"
           component={textInput}
         />
-         <Field name="Password"
+        <Field name="Password"
           component={textInput}
         />
 

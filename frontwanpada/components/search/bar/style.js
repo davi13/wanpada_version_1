@@ -7,11 +7,14 @@ export const styles = StyleSheet.create({
   },
   containerBar: {
     flexDirection: 'row',
-    width: 320
+    width: 250,
+    marginRight:50,
+    marginTop: -10
   },
   containerButton: {
     backgroundColor: "transparent",
     width: 40,
-    height: 40
+    height: 40,
+    marginLeft:30
   }
 })

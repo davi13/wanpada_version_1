@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Header } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 
+import {connect} from 'react-redux';
 import PowerOff from './PowerOff';
 
 const ListItemHome = (props) => {
@@ -25,4 +26,11 @@ const ListItemHome = (props) => {
   );
 }
 
-export default ListItemHome;
+function mapStateToProps(state) {
+    return { display: state.display }
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(ListItemHome);

@@ -11,7 +11,7 @@ class Display extends Component {
   }
 
   render(){
-    if (this.props.display){
+    if (!this.props.display){
       return (<AppNavigator />)
     }
     else {
