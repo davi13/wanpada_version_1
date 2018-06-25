@@ -28,20 +28,7 @@ class HomeScreen extends Component {
 
   getAllUsers() {
     self = this
-    fetch('http://10.2.1.232:3000',
-      {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      }
-    )
-    .then((response) => { return response.json() })
-    .then((data) => {
-      console.log(data);
-      this.setState({ usersList: data})
-    })
+    
   }
 
 

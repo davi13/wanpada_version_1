@@ -16,91 +16,65 @@ import {Ionicons} from '@expo/vector-icons';
 import {connect} from 'react-redux';
 
 
-
-
-
 class Profile extends React.Component {
-
 
   constructor() {
     super();
     this.state = {visible : false }
   }
-
-      static navigationOptions = {
-        header: null
-      };
-
-
+  static navigationOptions = {
+    header: null
+  }
 
   render(){
-      var displayProfile = this.props.profile;
-      var colorHeart = {
-      };
+    var displayProfile = this.props.profile;
+    var colorHeart = {};
 
 
-      if(displayProfile == true) {
-        colorHeart = {
-          color: "red",
-        }
-      }
+    if(displayProfile == true) {
+      colorHeart = { color: "red", }
+    }
 
-      return(
+    return(
 
       <View style={profile.profile_section}>
         <Image style={{borderRadius: 30, height: 60, width: 60, marginTop:20, marginRight: 'auto', marginLeft:'auto'}} source={require("../../assets/images/avatar-1.jpg")} />
 
         <View style={{position: 'absolute', top: 20, right: -5}}>
-            <Ionicons name="md-heart" size={32} style={colorHeart}
-
-            // activation de la fonction contenue dans le dispatch
-            onPress={() => {
-              this.props.handleProfile()
-            }}
-            />
-
+          <Ionicons name="md-heart" size={32} style={colorHeart}
+            onPress={() => { this.props.handleProfile() }}
+          />
         </View>
 
         <Text h1 style={profile.title_profile}> John Doe </Text>
-
-
         <Text h2 style={profile.text_profile}> La Capsule academy</Text>
-
         <Text h2 style={profile.text_profile}> La Sorbonne</Text>
 
         <View style={{display: 'flex', flexDirection: 'row', marginTop:10}}>
 
           <View style={profile.competence_card}>
-          <Text style={profile.competence_text}> Web developpeur </Text>
+            <Text style={profile.competence_text}> Web developpeur </Text>
           </View>
 
           <View style={profile.competence_card}>
-          <Text style={profile.competence_text}> Intégrateur </Text>
+            <Text style={profile.competence_text}> Intégrateur </Text>
           </View>
 
           <View style={profile.competence_card}>
-          <Text style={profile.competence_text}> Web designer </Text>
+            <Text style={profile.competence_text}> Web designer </Text>
           </View>
-
-
 
         </View>
 
-          /// PARTIES ETOILES NOTES///
-          <Rating
-
+        <Rating
           type="star"
           fractions={1}
           imageSize={30}
           onFinishRating={this.ratingCompleted}
           style={{ paddingVertical: 10 }}
-          />
+        />
       </View>
-
-        ///////FIN ///////////
-
-      )
-
+    )
   }
 }
 

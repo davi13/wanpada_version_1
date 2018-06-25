@@ -39,7 +39,7 @@ class LandingScreen extends React.Component {
     console.log('============>' +value);
     var display = false;
     var ctx = this;
-    fetch('http://10.2.1.232:3000/signup', {
+    fetch('http://192.168.1.44:3000/signup', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
       body: 'nom='+value.Nom+'&prenom='+value.Prenom+'&email='+value.Email+'&password='+value.Password
@@ -73,7 +73,7 @@ class LandingScreen extends React.Component {
   SubmitsignIn(value) {
     var display = false;
     var ctx = this;
-    fetch('http://10.2.1.232:3000/signin', {
+    fetch('http://192.168.1.44:3000/signin', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
       body: 'email='+value.Email+'&password='+value.Password
