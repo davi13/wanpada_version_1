@@ -28,8 +28,8 @@ var userSchema = mongoose.Schema({
     match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     }, 
     competences: Array,
-    city : String,
-    school: String,
+    ville : String,
+    university: String,
     company : String
 });
 
@@ -56,8 +56,8 @@ router.post('/signup', function(req, res, next){
       password: hashedPassword,
       competences: [],
       content: [],// un tableau d'objet content date de creation et contenu publication
-      city: '',
-      school: '',
+      ville: '',
+      university: '',
       company: ''
   });
     newUser.save(
@@ -94,6 +94,30 @@ router.post('/signin', function(req, res, next) {
 );
 
 /********************FIN CONNEXION *************************************/
+
+/*************************USER UPDATE**********************************/
+router.post('/update', function(req, res, next) {
+  
+  UserModel.update(
+    {email: req.body.email},
+    {
+     nom: req.body.nom,
+     prenom: req.body.prenom,
+     email: req.body.email,
+     password: hashedPassword,
+     competences: req.body.competences,
+     content: req.body.content,// un tableau d'objet content date de creation et contenu publication
+     ville: req.body.ville,
+     university: req.body.university,
+     company: req.body.company
+    },function(error, user) {
+       res.json(user);
+    }
+  );
+}
+);
+
+/*************************FIN USER UPDATE**********************************/
 
 var MessageSchema = mongoose.Schema({
     conversationId: String,

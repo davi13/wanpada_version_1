@@ -43,6 +43,7 @@ class LandingScreen extends React.Component {
   SubmitsignUp(value) {
     var display = false;
     var ctx = this;
+    //10.2.1.38
     fetch('http://10.2.1.38:3000/signup', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
@@ -84,6 +85,7 @@ class LandingScreen extends React.Component {
   SubmitsignIn(value) {
     var display = false;
     var ctx = this;
+    //10.2.1.38
     fetch('http://10.2.1.38:3000/signin', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
@@ -93,7 +95,7 @@ class LandingScreen extends React.Component {
       return response.json();
     })
     .then((data) => {
-      console.log('======================>',data);
+    
       if(data == false) {
         this.setState({msgErr: 'Mince il y a des erreurs au niveau des champs', notConnected: true})
       }

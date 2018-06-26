@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header, Input, Button, Overlay, ListItem, Rating  } from 'react-native-elements';
 import {
-  Image,
+  Modal,Image,
   Platform,
   ScrollView,
   StyleSheet,
@@ -11,11 +11,11 @@ import {
   ImageBackground, Animated
 } from 'react-native';
 import {WebBrowser} from 'expo';
-import {Ionicons} from '@expo/vector-icons';
+import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 
 import {connect} from 'react-redux';
 
-
+import UserUpdate from './form/UserUpdate';
 
 
 
@@ -24,12 +24,45 @@ class Profile extends React.Component {
 
   constructor() {
     super();
-    this.state = {visible : false }
+    this.state = {visible : false,  isVisible: false }
   }
 
-      static navigationOptions = {
-        header: null
-      };
+  static navigationOptions = {
+    header: null
+  };
+
+  onSubmitUserUpdate() {
+    this.setStateS({ isVisible: false })
+    ctx = this;
+    //10.2.1.38
+    fetch('http://10.2.1.38:3000/update', {
+      method: 'POST',
+      headers: {'Content-Type':'application/x-www-form-urlencoded'},
+      body: 'nom='+value.Nom+'&prenom='+value.Prenom+'&email='+value.Email+'&password='+value.Password+'&ville='+value.Ville+'&company='+value.Company+'&university='+value.University+'&note='+value.Note
+    })
+    .then((res) => res.json())
+
+    .then((data) => {
+      if(data._id){
+
+        display = true;
+
+        ctx.props.onUpdateClick(data);
+
+      }else {
+
+        ctx.props.onUpdateClick(data);
+
+      }
+
+      console.log(data);
+      
+       
+    })
+    .catch(function(error) {
+      console.log('Request failed', error)
+    });
+  }
 
 
 
@@ -45,6 +78,9 @@ class Profile extends React.Component {
         }
       }
 
+      console.log(this.state.isVisible);
+      
+
       return(
 
       <View style={profile.profile_section}>
@@ -52,14 +88,26 @@ class Profile extends React.Component {
 
         <View style={{position: 'absolute', top: 20, right: -5}}>
             <Ionicons name="md-heart" size={32} style={colorHeart}
-
             // activation de la fonction contenue dans le dispatch
-            onPress={() => {
-              this.props.handleProfile()
-            }}
-            />
-
+            onPress={() => { this.props.handleProfile() }} />
         </View>
+
+         <View style={{position: 'absolute', top: 20, left: 0}}>
+
+            <MaterialCommunityIcons name="account-edit" size={32} style={colorHeart}
+            
+            onPress={() => this.setState({isVisible: true })} />
+        </View>
+
+        <Modal animationType='slide' transparent={false}  visible={this.state.isVisible}>
+          <Overlay fullScreen={true} isVisible={this.state.isVisible}>
+            <View style={{flex:1,justifyContent: 'center',alignItems: 'center' }}>
+               
+               <UserUpdate onSubmit={()=> this.onSubmitUserUpdate()} />    
+              
+            </View>
+          </Overlay>
+        </Modal>
 
         <Text h1 style={profile.title_profile}> John Doe </Text>
 
@@ -86,7 +134,7 @@ class Profile extends React.Component {
 
         </View>
 
-          /// PARTIES ETOILES NOTES///
+          {/*PARTIES ETOILES NOTES*/}
           <Rating
 
           type="star"
@@ -97,7 +145,7 @@ class Profile extends React.Component {
           />
       </View>
 
-        ///////FIN ///////////
+        /*****FIN ***********/
 
       )
 
@@ -108,8 +156,8 @@ class Profile extends React.Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleProfile: function() {
-      dispatch({type: 'profile'});
+    onUpdateClick: function() {
+      dispatch({type: 'USER_UPDATE', data});
     }
   }
 }
