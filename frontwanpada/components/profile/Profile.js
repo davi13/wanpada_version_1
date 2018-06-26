@@ -21,7 +21,6 @@ import UserUpdate from './form/UserUpdate';
 
 class Profile extends React.Component {
 
-
   constructor() {
     super();
     this.state = {visible : false,  isVisible: false }
@@ -67,16 +66,13 @@ class Profile extends React.Component {
 
 
   render(){
-      var displayProfile = this.props.profile;
-      var colorHeart = {
-      };
+    var displayProfile = this.props.profile;
+    var colorHeart = {};
 
 
-      if(displayProfile == true) {
-        colorHeart = {
-          color: "red",
-        }
-      }
+    if(displayProfile == true) {
+      colorHeart = { color: "red", }
+    }
 
       console.log(this.state.isVisible);
       
@@ -110,27 +106,22 @@ class Profile extends React.Component {
         </Modal>
 
         <Text h1 style={profile.title_profile}> John Doe </Text>
-
-
         <Text h2 style={profile.text_profile}> La Capsule academy</Text>
-
         <Text h2 style={profile.text_profile}> La Sorbonne</Text>
 
         <View style={{display: 'flex', flexDirection: 'row', marginTop:10}}>
 
           <View style={profile.competence_card}>
-          <Text style={profile.competence_text}> Web developpeur </Text>
+            <Text style={profile.competence_text}> Web developpeur </Text>
           </View>
 
           <View style={profile.competence_card}>
-          <Text style={profile.competence_text}> Intégrateur </Text>
+            <Text style={profile.competence_text}> Intégrateur </Text>
           </View>
 
           <View style={profile.competence_card}>
-          <Text style={profile.competence_text}> Web designer </Text>
+            <Text style={profile.competence_text}> Web designer </Text>
           </View>
-
-
 
         </View>
 
@@ -142,7 +133,7 @@ class Profile extends React.Component {
           imageSize={30}
           onFinishRating={this.ratingCompleted}
           style={{ paddingVertical: 10 }}
-          />
+        />
       </View>
 
         /*****FIN ***********/

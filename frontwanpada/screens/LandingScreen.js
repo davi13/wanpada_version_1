@@ -18,9 +18,9 @@ class LandingScreen extends React.Component {
     this.SubmitsignIn = this.SubmitsignIn.bind(this);
     this.state = {
       isVisible : false,
-      signUp: false, 
-      signIn: false, 
-      msgErr: '', 
+      signUp: false,
+      signIn: false,
+      msgErr: '',
       notConnected: false
     }
   }
@@ -30,12 +30,12 @@ class LandingScreen extends React.Component {
   }
 
   signUp(){
-    
+
     this.setState({isVisible: true, signUp: true, signIn: false})
   }
 
   signIn(){
-    
+
     this.setState({isVisible: true, signIn: true, signUp: false})
   }
 
@@ -57,7 +57,7 @@ class LandingScreen extends React.Component {
         this.setState({msgErr: 'Mince il y a des erreurs au niveau des champs', notConnected: true})
       }else{
 
-      
+
       if(data._id){
         display = true;
         ctx.props.onSignUpClick(data, display);
@@ -68,7 +68,7 @@ class LandingScreen extends React.Component {
 
       console.log(data);
       }
-       
+
     })
     .catch(function(error) {
       console.log('Request failed', error)
@@ -164,7 +164,7 @@ class LandingScreen extends React.Component {
                       marginTop: 20,
                     }} onPress={ this.signUp/*() => this.setState({isVisible: true})*/}></Button>
               <Modal animationType='slide' transparent={true}  visible = {this.state.isVisible}>
-                <Overlay isVisible={this.state.isVisible}> 
+                <Overlay isVisible={this.state.isVisible}>
                   <View style={{flex:1,justifyContent: 'center',alignItems: 'center' }}>
                     <View style={{position: 'absolute', top: 0, right: 0}}>
                       <Text onPress={this.returnHome}>

@@ -23,21 +23,12 @@ class SettingsScreen extends React.Component {
     header: null,
   };
 
-
-
-
-
   handleClick(){
-    /// POUR LIKER
     var isLike = !this.state.like;
     this.setState(
       {like : isLike}
     );
   }
-  ///////FIN ///////////
-
-
-
 
   render() {
     console.log("HOLALALAL")
@@ -70,15 +61,12 @@ class SettingsScreen extends React.Component {
   }
 
   function mapStateToProps(state) {
-      return { profile: state.profile,
-               posts: state.posts,
-               avis: state.avis
-            }
+    return { profile: state.profile, posts: state.posts, avis: state.avis }
   }
 
   export default connect(
-      mapStateToProps,
-          null
+    mapStateToProps,
+    null
   )(SettingsScreen);
 
   const profile = StyleSheet.create({
