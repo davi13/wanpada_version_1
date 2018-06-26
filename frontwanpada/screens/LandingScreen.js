@@ -95,7 +95,7 @@ class LandingScreen extends React.Component {
       return response.json();
     })
     .then((data) => {
-    
+
       if(data == false) {
         this.setState({msgErr: 'Mince il y a des erreurs au niveau des champs', notConnected: true})
       }
@@ -167,14 +167,13 @@ class LandingScreen extends React.Component {
                 <Overlay isVisible={this.state.isVisible}>
                   <View style={{flex:1,justifyContent: 'center',alignItems: 'center' }}>
                     <View style={{position: 'absolute', top: 0, right: 0}}>
-                      <Text onPress={this.returnHome}>
-                        <Icon
+                      <Icon
                         raised
                         name='ios-close'
                         type='ionicon'
                         color='#00A6FB'
-                        />
-                      </Text>
+                         onPress={this.returnHome}
+                      />
                     </View>
                     {sign}
                   </View>

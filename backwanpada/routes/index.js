@@ -26,7 +26,7 @@ var userSchema = mongoose.Schema({
     unique: true,
     required: 'Email address is required',
     match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-    }, 
+    },
     competences: Array,
     ville : String,
     university: String,
@@ -97,7 +97,7 @@ router.post('/signin', function(req, res, next) {
 
 /*************************USER UPDATE**********************************/
 router.post('/update', function(req, res, next) {
-  
+
   UserModel.update(
     {email: req.body.email},
     {
