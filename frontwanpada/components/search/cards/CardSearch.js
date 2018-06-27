@@ -68,7 +68,7 @@ export default class CardSearch extends Component {
         </View>
 
         <View style={{ marginTop: 10, marginLeft: 10, marginRight: 10, flexDirection: 'row'}}>
-          <Badge containerStyle={{   width: 100,
+          <Badge containerStyle={{ width: 100,
             backgroundColor: '#00A6FB',
             marginRight: 10,
             height: 20,

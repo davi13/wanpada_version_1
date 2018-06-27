@@ -58,13 +58,13 @@ export default class CardSearch extends Component {
 
         <View style={{ marginTop: 10, marginLeft: 10, marginRight: 10, flexDirection: 'row'}}>
           <Badge containerStyle={{ backgroundColor: '#00A6FB', width: 120, marginRight: 5}}>
-            <Text TextStyle={{fontSize: 7, color: '#FFFFFF'}}>Competences</Text>
+            <Text TextStyle={{color: '#FFFFFF'}}>Competences</Text>
           </Badge>
           <Badge containerStyle={{ backgroundColor: '#00A6FB', width: 80, marginRight: 5}}>
-            <Text Style={{fontSize: 7, color: '#FFFFFF'}}>Comp</Text>
+            <Text Style={{color: '#FFFFFF'}}>Comp</Text>
           </Badge>
           <Badge containerStyle={{ backgroundColor: '#00A6FB', width: 120, marginRight: 5}}>
-            <Text TextStyle={{fontSize: 7, color: '#FFFFFF'}}>Competences</Text>
+            <Text TextStyle={{color: '#FFFFFF'}}>Competences</Text>
           </Badge>
         </View>
 

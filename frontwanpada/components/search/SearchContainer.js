@@ -5,13 +5,14 @@ import { connect } from 'react-redux';
 import FilterSearch from './filter/FilterSearch';
 import BarSearch from './bar/BarSearch';
 import { styles } from './style';
+import URL from '../../constants/Connect'
 
 class SearchScreen extends Component {
 
   SubmitBarSearch(values) {
     self = this;
-    let url = 'http://10.2.1.232:3000/signup'
-    fetch(url, {
+    
+    fetch(URL.urlApp, {
       method: POST,
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
       body: 'search='+value.search
@@ -37,7 +38,7 @@ class SearchScreen extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     SearchBarsend: () => {
-      dispatch({ type: 'SEARCH_COMP', payload: ''})
+      dispatch({ type: 'SEARCH_COMP', payload: data})
     }
   }
 }

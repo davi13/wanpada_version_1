@@ -10,31 +10,28 @@ class FilterSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      champs: ''
+      visible: false
     }
   }
 
   render() {
-
-
-        if (Platform.OS === 'ios') {
-          return (
-            <View style= {{marginLeft: 20, marginRight: 20, marginTop: 'auto', marginBottom: 'auto'}}>
-                        <Ionicons
-                          name="ios-options" size={30} color='#fff'
-                          underlayColor="transparent"/>
-
-              </View>
-                  );
-
-        } else {
-              return (
-                <View style= {{marginLeft: 20, marginRight: 20, marginTop: 'auto', marginBottom: 'auto'}}>
-                            <Ionicons   name="md-options" size={30} color='#fff'          underlayColor="transparent"
-                            />
-                  </View>
-                      )
-                }
-            }
+    console.log(this.state.vivible);
+    if (Platform.OS === 'ios') {
+      return (
+        <View style= {{marginLeft: 20, marginRight: 20, marginTop: 'auto', marginBottom: 'auto'}}>
+          <Ionicons name="ios-options" size={30} color='#fff'
+          underlayColor="transparent" onPress={this.setState({visible: false})}/>
+        </View>
+      );
+    }
+    else {
+      return (
+        <View style= {{marginLeft: 20, marginRight: 20, marginTop: 'auto', marginBottom: 'auto'}}>
+          <Ionicons name="md-options" size={30} color='#fff'
+          underlayColor="transparent" onPress={this.setState({visible: false})}/>
+        </View>
+      )
+    }
+  }
 }
 export default FilterSearch;

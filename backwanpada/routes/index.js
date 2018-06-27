@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose= require('mongoose');
+const CryptoJS = require('crypto-js');
 var options = { server: { socketOptions: {connectTimeoutMS: 5000 } }};
 ////////////////////////////////////////////////////////////
 // J'intègre password avec npm install --save password-hash
@@ -18,19 +19,18 @@ var userSchema = mongoose.Schema({
   nom: {type: String, required: true, min: 3, max: 10},
   prenom: {type: String, required: true, min: 3, max: 10},
   password: {type: String, required: true},
-  content: {type: String, required: true},
+  content: {type: String, required: false},
   email: {
     type: String,
-    trim: true,
     lowercase: true,
     unique: true,
-    required: 'Email address is required',
+    required: true,
     match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-    },
-    competences: Array,
-    ville : String,
-    university: String,
-    company : String
+  },
+  competences: { type: Array, required: false },
+  ville : String,
+  university: String,
+  company : String
 });
 
 var UserModel = mongoose.model('users', userSchema);
@@ -44,54 +44,47 @@ router.get('/', function(req, res, next) {
     }
   );
 });
+
+
 /******************** INSCRIPTION *****************************/
 router.post('/signup', function(req, res, next){
 
-  var hashedPassword = passwordHash.generate(req.body.password);
-
   var newUser = new UserModel({
-      nom: req.body.nom,
-      prenom: req.body.prenom,
-      email: req.body.email,
-      password: hashedPassword,
-      competences: [],
-      content: [],// un tableau d'objet content date de creation et contenu publication
-      ville: '',
-      university: '',
-      company: ''
+    nom: req.body.nom,
+    prenom: req.body.prenom,
+    email: req.body.email,
+    password: CryptoJS.SHA512(req.body.password).toString(),
   });
-    newUser.save(
-      function(err, user){
-        if(err) {
-          res.json(false);
-        }
-        else {
-          res.json(user);
-        }
+  newUser.save(
+    function(err, user){
+      if(err) {
+        res.json(false);
       }
-    );
-  }
-);
-/***************************FIN INSCRIPTION***************************/
+      else {
+        res.json(user);
+      }
+    }
+  );
+});
+
 
 
 /*************************CONNEXION**********************************/
 router.post('/signin', function(req, res, next) {
-  
-    UserModel.find(
-      {email: req.body.email, password: req.body.password},
-      function (err, user){
-        console.log(user);
-        if(!err) {
-          res.json(user);
-        }
-        else{
-          res.json('desole Mais un error se produit');
-        }
+
+  UserModel.find(
+    {email: req.body.email, password: CryptoJS.SHA512(req.body.password).toString()},
+    function (err, user){
+      console.log(user);
+      if(err) {
+        res.json(false);
       }
-    );
-  }
-);
+      else{
+        res.json(user);
+      }
+    }
+  );
+});
 
 /********************FIN CONNEXION *************************************/
 
@@ -104,7 +97,7 @@ router.post('/update', function(req, res, next) {
      nom: req.body.nom,
      prenom: req.body.prenom,
      email: req.body.email,
-     password: hashedPassword,
+     password: CryptoJS.SHA512(req.body.password).toString(),
      competences: req.body.competences,
      content: req.body.content,// un tableau d'objet content date de creation et contenu publication
      ville: req.body.ville,

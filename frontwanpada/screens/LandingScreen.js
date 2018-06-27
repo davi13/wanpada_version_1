@@ -4,8 +4,11 @@ import { Overlay, Input, Button, Divider, Icon} from 'react-native-elements';
 import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 import {connect} from 'react-redux'
+
 import SignUp from '../components/connexion/form';
 import SignIn from '../components/connexion/SignIn';
+import URL from '../constants/Connect'
+
 
 class LandingScreen extends React.Component {
 
@@ -43,8 +46,7 @@ class LandingScreen extends React.Component {
   SubmitsignUp(value) {
     var display = false;
     var ctx = this;
-    //10.2.1.38
-    fetch('http://10.2.1.38:3000/signup', {
+    fetch(URL.urlApp+'/signup', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
       body: 'nom='+value.Nom+'&prenom='+value.Prenom+'&email='+value.Email+'&password='+value.Password
@@ -55,20 +57,17 @@ class LandingScreen extends React.Component {
     .then((data) => {
       if(data == false) {
         this.setState({msgErr: 'Mince il y a des erreurs au niveau des champs', notConnected: true})
-      }else{
-
-
-      if(data._id){
-        display = true;
-        ctx.props.onSignUpClick(data, display);
       }
-      else {
-        ctx.props.onSignUpClick(data, display);
+      else{
+        if(data._id){
+          display = true;
+          ctx.props.onSignUpClick(data, display);
+        }
+        else {
+          ctx.props.onSignUpClick(data, display);
+        }
+        console.log(data);
       }
-
-      console.log(data);
-      }
-
     })
     .catch(function(error) {
       console.log('Request failed', error)
@@ -83,10 +82,11 @@ class LandingScreen extends React.Component {
   ///   FORMULAIRE CONNEXION   //
   ///////////////////////////////
   SubmitsignIn(value) {
+    console.log(value);
     var display = false;
     var ctx = this;
     //10.2.1.38
-    fetch('http://10.2.1.38:3000/signin', {
+    fetch(URL.urlApp+'/signin', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
       body: 'email='+value.Email+'&password='+value.Password
@@ -163,7 +163,7 @@ class LandingScreen extends React.Component {
                       borderRadius: 20,
                       marginTop: 20,
                     }} onPress={ this.signUp/*() => this.setState({isVisible: true})*/}></Button>
-              <Modal animationType='slide' transparent={true}  visible = {this.state.isVisible}>
+              <Modal animationType='slide' onRequestClose={() => null} transparent={true}  visible = {this.state.isVisible}>
                 <Overlay isVisible={this.state.isVisible}>
                   <View style={{flex:1,justifyContent: 'center',alignItems: 'center' }}>
                     <View style={{position: 'absolute', top: 0, right: 0}}>

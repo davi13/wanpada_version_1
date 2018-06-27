@@ -12,6 +12,7 @@ import ModalHome from '../components/homepage/modal/ModalHome';
 import HeaderApp from '../components/HeaderApp';
 
 import { MonoText } from '../components/StyledText';
+import URL from '../constants/Connect'
 
 class HomeScreen extends Component {
   static navigationOptions = {
@@ -28,7 +29,7 @@ class HomeScreen extends Component {
 
   getAllUsers() {
     self = this
-    fetch('http://10.2.1.38:3000',
+    fetch(URL.urlApp,
       {
         method: 'GET',
         headers: {

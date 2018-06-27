@@ -34,17 +34,11 @@ class BarSearch extends Component {
           component={textInput}
         />
 
-        <Button
-          onPress={this.props.handleSubmit}
-          icon={
-            <Icon
-             name='search'
-             size={24}
-             color='white'
-            />
-          }
-          buttonStyle={styles.containerButton}
-          containerStyle={{ marginTop: 10 }}
+        <Icon
+         name='search'
+         size={24}
+         color='white'
+         onPress={this.props.handleSubmit}
         />
       </View>
     );

@@ -35,7 +35,6 @@ export const styles = StyleSheet.create({
     textAlign: 'left'
   },
   dist_profile: {
-    fontSize: 15,
     marginTop: 15,
     color: '#00A6FB',
     fontWeight: 'bold'
