@@ -1,19 +1,16 @@
 export default function display(state = false, action){
-  switch (action.type) {
-    case 'userSignin':
-      return true
-      break;
 
-    case 'userSignUp':
-      return true
-    break;
+if (action.type == 'userSignIn') {
+  return true
+}
+else if (action.type == 'userSignUp') {
 
-    case 'poweroff':
-    console.log("depuis le reducer : click!")
-      return false
-    break;
-
-    default:
-      return state
-  }
+  return true
+}
+else if (action.type == 'poweroff') {
+  return false
+}
+else {
+  return state;
+}
 }

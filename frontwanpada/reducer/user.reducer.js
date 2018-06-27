@@ -1,10 +1,9 @@
 export default function user(state={}, action) {
-  if (action.type == 'userSignin') {
-    return state.user
+  if (action.type == 'userSignIn') {
+    return action.user
   }
-  else if (action.type == 'userSignup') {
-    console.log("TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST TEST GROS TEST")
-    return state.user
+  else if (action.type == 'userSignUp') {
+    return action.user
   }
   else {
     return state;

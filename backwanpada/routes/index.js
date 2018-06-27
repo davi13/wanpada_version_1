@@ -64,7 +64,7 @@ router.post('/signup', function(req, res, next){
     nom: req.body.nom,
     prenom: req.body.prenom,
     email: req.body.email,
-    password: CryptoJS.SHA512(req.body.password).toString(),
+    password: req.body.password
   });
   newUser.save(
     function(err, user){
@@ -84,7 +84,7 @@ router.post('/signup', function(req, res, next){
 router.post('/signin', function(req, res, next) {
 
   UserModel.find(
-    {email: req.body.email, password: CryptoJS.SHA512(req.body.password).toString()},
+    {email: req.body.email, password: req.body.password},
     function (err, user){
       console.log(user);
       if(err) {

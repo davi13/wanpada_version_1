@@ -42,7 +42,7 @@ class HomeScreen extends Component {
     )
     .then((response) => { return response.json() })
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       this.setState({ usersList: data})
     })
   }
@@ -51,7 +51,7 @@ class HomeScreen extends Component {
   render() {
     console.log("hello ceci est un test!!")
     var user = this.props.user
-    console.log(user)
+    // console.log(user)
     // console.log(this.props.user)
     const userItem = this.state.usersList.map((item, index) => <CardHome key={index} nom={item.nom} prenom={item.prenom} />);
 
