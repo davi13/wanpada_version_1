@@ -17,6 +17,8 @@ import {connect} from 'react-redux';
 
 import UserUpdate from './form/UserUpdate';
 
+import URL from '../../constants/Connect'
+
 
 
 class Profile extends React.Component {
@@ -40,7 +42,7 @@ class Profile extends React.Component {
     ctx = this;
     //10.2.1.38
     //192.168.1.13
-    fetch('http://10.2.1.197:3000/update', {
+    fetch(URL.urlApp+'/update', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
       body: 'id='+this.props.user._id+'&nom='+values.Nom+'&prenom='+values.Prenom+'&email='+values.Email+'&password='+values.Password+'&ville='+values.Ville+'&company='+values.Company+'&university='+values.University

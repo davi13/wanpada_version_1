@@ -18,7 +18,8 @@ import HeaderApp from '../components/HeaderApp';
 import { MonoText } from '../components/StyledText';
 import SearchContainer from '../components/search/SearchContainer';
 import CardSearch from '../components/search/cards/CardSearch';
-import { styles } from '../styles/styleSearch'
+import { styles } from '../styles/styleSearch';
+import URL from '../constants/Connect'
 
 export default class SearchScreen extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ export default class SearchScreen extends React.Component {
   // Ici, nous sauvegardons la valeur de this dans ctx, afin de pouvoir y accéder depuis notre fonction fetch
   const ctx = this;
   // Ici, nous effectuons un appel asynchrone (fetch) de l'url qui contient notre liste d'utilisateurs
-  fetch('http://10.2.1.231:3000')
+  fetch(URL.urlApp+'/users')
   .then(function(response) {
     // Une fois, la data récupérée, nous la transformons en json
     return response.json();

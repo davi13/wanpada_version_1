@@ -28,7 +28,7 @@ class SearchScreen extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <FilterSearch />
+        {/* <FilterSearch /> */}
         <BarSearch onSubmit={this.SubmitBarSearch.bind(this)}/>
       </View>
     );
