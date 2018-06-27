@@ -13,6 +13,8 @@ import HeaderApp from '../components/HeaderApp';
 
 import { MonoText } from '../components/StyledText';
 
+import PublishReduxForm from '../components/PublishReduxForm';
+
 class HomeScreen extends Component {
   static navigationOptions = {
     header: null,
@@ -28,7 +30,7 @@ class HomeScreen extends Component {
 
   getAllUsers() {
     self = this
-    fetch('http://127.0.0.1:3000',
+    fetch('http://10.2.1.197:3000',
       {
         method: 'GET',
         headers: {
@@ -46,6 +48,10 @@ class HomeScreen extends Component {
 
 
   render() {
+    console.log("hello ceci est un test!!")
+    var user = this.props.user
+    console.log(user)
+    // console.log(this.props.user)
     const userItem = this.state.usersList.map((item, index) => <CardHome key={index} nom={item.nom} prenom={item.prenom} />);
 
     return (
@@ -66,8 +72,15 @@ class HomeScreen extends Component {
 }
 
 function mapStateToProps(state) {
-    return { display: state.display }
+    return { display: state.display, user: state.user }
 }
+
+
+
+
+
+
+
 
 export default connect(
   mapStateToProps,

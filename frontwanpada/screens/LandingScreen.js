@@ -18,9 +18,9 @@ class LandingScreen extends React.Component {
     this.SubmitsignIn = this.SubmitsignIn.bind(this);
     this.state = {
       isVisible : false,
-      signUp: false, 
-      signIn: false, 
-      msgErr: '', 
+      signUp: false,
+      signIn: false,
+      msgErr: '',
       notConnected: false
     }
   }
@@ -30,20 +30,21 @@ class LandingScreen extends React.Component {
   }
 
   signUp(){
-    
+
     this.setState({isVisible: true, signUp: true, signIn: false})
   }
 
   signIn(){
-    
+
     this.setState({isVisible: true, signIn: true, signUp: false})
   }
 
 
   SubmitsignUp(value) {
+    console.log("NUMERO 1")
     var display = false;
     var ctx = this;
-    fetch('http://10.2.1.38:3000/signup', {
+    fetch('http://127.0.0.1:3000/signup', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
       body: 'nom='+value.Nom+'&prenom='+value.Prenom+'&email='+value.Email+'&password='+value.Password
@@ -56,18 +57,21 @@ class LandingScreen extends React.Component {
         this.setState({msgErr: 'Mince il y a des erreurs au niveau des champs', notConnected: true})
       }else{
 
-      
+
       if(data._id){
+        console.log("NUMERO 2")
         display = true;
+        console.log("---------->" + "ICI JE VAIS LOGO LA DATA")
+        console.log(data);
         ctx.props.onSignUpClick(data, display);
       }
       else {
         ctx.props.onSignUpClick(data, display);
       }
 
-      console.log(data);
+
       }
-       
+
     })
     .catch(function(error) {
       console.log('Request failed', error)
@@ -84,7 +88,7 @@ class LandingScreen extends React.Component {
   SubmitsignIn(value) {
     var display = false;
     var ctx = this;
-    fetch('http://10.2.1.38:3000/signin', {
+    fetch('http://127.0.0.1:3000/signin', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
       body: 'email='+value.Email+'&password='+value.Password
@@ -137,47 +141,47 @@ class LandingScreen extends React.Component {
     return (
       <ImageBackground style={{flex: 1}} source={require("../assets/images/backgroundofficial.jpg")}>
         <View style={{flex:1,justifyContent: 'center',alignItems: 'center' }}>
-              <Text h1 style={{color: "red", fontSize: 20, marginBottom: 20, textAlign: 'center', padding: 5}}>{errConnect}</Text>
-              <Text h1 style={{color: "#FFFFFF", fontSize: 50, fontWeight: "700", marginBottom: 20}}> WanPada</Text>
-              <Text h3 style={{color: "#FFFFFF", fontSize: 20, fontWeight: "500", marginBottom: 50}}> Le Conseil au bout des doigts</Text>
-              <Button title="Connexion"
-                      textStyle={{ fontWeight: "300", color: "#FFFFFF" }}
-                      buttonStyle={{
-                      backgroundColor: "#00A6FB",
-                      width: 250,
-                      height: 45,
-                      borderColor: "transparent",
-                      borderWidth: 0,
-                      borderRadius: 20
-                    }} onPress={this.signIn/*() => this.setState({isVisible: true})*/}></Button>
-              <Button title="Inscription"
-                      textStyle={{ fontWeight: "300" }}
-                      buttonStyle={{
-                      backgroundColor: "#00A6FB",
-                      width: 250,
-                      height: 45,
-                      borderColor: "transparent",
-                      borderWidth: 0,
-                      borderRadius: 20,
-                      marginTop: 20,
-                    }} onPress={ this.signUp/*() => this.setState({isVisible: true})*/}></Button>
-              <Modal animationType='slide' transparent={true}  visible = {this.state.isVisible}>
-                <Overlay isVisible={this.state.isVisible}> 
-                  <View style={{flex:1,justifyContent: 'center',alignItems: 'center' }}>
-                    <View style={{position: 'absolute', top: 0, right: 0}}>
-                      <Text onPress={this.returnHome}>
-                        <Icon
-                        raised
-                        name='ios-close'
-                        type='ionicon'
-                        color='#00A6FB'
-                        />
-                      </Text>
-                    </View>
-                    {sign}
-                  </View>
-                </Overlay>
-              </Modal>
+          <Text h1 style={{color: "red", fontSize: 20, marginBottom: 20, textAlign: 'center', padding: 5}}>{errConnect}</Text>
+          <Text h1 style={{color: "#FFFFFF", fontSize: 50, fontWeight: "700", marginBottom: 20}}> WanPada</Text>
+          <Text h3 style={{color: "#FFFFFF", fontSize: 20, fontWeight: "500", marginBottom: 50}}> Le Conseil au bout des doigts</Text>
+          <Button title="Connexion"
+            textStyle={{ fontWeight: "300", color: "#FFFFFF" }}
+            buttonStyle={{
+              backgroundColor: "#00A6FB",
+              width: 250,
+              height: 45,
+              borderColor: "transparent",
+              borderWidth: 0,
+              borderRadius: 20
+            }} onPress={this.signIn/*() => this.setState({isVisible: true})*/}></Button>
+          <Button title="Inscription"
+            textStyle={{ fontWeight: "300" }}
+            buttonStyle={{
+              backgroundColor: "#00A6FB",
+              width: 250,
+              height: 45,
+              borderColor: "transparent",
+              borderWidth: 0,
+              borderRadius: 20,
+              marginTop: 20,
+            }} onPress={ this.signUp/*() => this.setState({isVisible: true})*/}></Button>
+          <Modal animationType='slide' transparent={true}  visible = {this.state.isVisible}>
+            <Overlay isVisible={this.state.isVisible}>
+              <View style={{flex:1,justifyContent: 'center',alignItems: 'center' }}>
+                <View style={{position: 'absolute', top: 0, right: 0}}>
+                  <Text onPress={this.returnHome}>
+                    <Icon
+                      raised
+                      name='ios-close'
+                      type='ionicon'
+                      color='#00A6FB'
+                    />
+                  </Text>
+                </View>
+                {sign}
+              </View>
+            </Overlay>
+          </Modal>
         </View>
       </ImageBackground>
     );

@@ -14,11 +14,13 @@ mongoose.connect('mongodb://wanpada1:wanpada1@ds161790.mlab.com:61790/wanpada',
    }
 );
 
+// USER
+
 var userSchema = mongoose.Schema({
   nom: {type: String, required: true, min: 3, max: 10},
   prenom: {type: String, required: true, min: 3, max: 10},
   password: {type: String, required: true},
-  content: {type: String, required: true},
+  // content: {type: String, required: true},
   email: {
     type: String,
     trim: true,
@@ -26,7 +28,7 @@ var userSchema = mongoose.Schema({
     unique: true,
     required: 'Email address is required',
     match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-    }, 
+    },
     competences: Array,
     city : String,
     school: String,
@@ -62,6 +64,7 @@ router.post('/signup', function(req, res, next){
   });
     newUser.save(
       function(err, user){
+        console.log(user)
         if(err) {
           res.json(false);
         }
@@ -77,7 +80,7 @@ router.post('/signup', function(req, res, next){
 
 /*************************CONNEXION**********************************/
 router.post('/signin', function(req, res, next) {
-  
+
     UserModel.find(
       {email: req.body.email, password: req.body.password},
       function (err, user){
@@ -95,6 +98,56 @@ router.post('/signin', function(req, res, next) {
 
 /********************FIN CONNEXION *************************************/
 
+
+
+
+
+
+
+// NOUVELLE publication
+
+var publishSchema = mongoose.Schema({
+  userid: String,
+  date: String,
+  nbOfLikes: String,
+  comments: String,
+  message: String
+});
+
+var PublishModel = mongoose.model('publications', publishSchema);
+
+
+router.post('/newmessage', function(req, res, next) {
+  var newMessage = new PublishModel({
+    userid: req.body.userid,
+    date: req.body.date,
+    nbOfLikes: req.body.nbOfLikes,
+    comments: req.body.comments,
+    message: req.body.messages
+  })
+  newMessage.save(function(error, newMessage ) {
+    console.log(newMessage);
+    res.json(newMessage);
+  })
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// MESSAGE TESTS
 var MessageSchema = mongoose.Schema({
     conversationId: String,
     sendingUserId: String,
@@ -138,5 +191,7 @@ router.post('/search',
     )
   }
 );
+
+
 
 module.exports = router;

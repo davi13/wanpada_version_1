@@ -45,9 +45,9 @@ class SignIn extends React.Component {
           component={textInput}
         />
 
-        <Field name="Password"
+        {/* <Field name="Password"
           component={textInput}
-        />
+        /> */}
 
         <Field name="Password"
           component={passwordInput}
