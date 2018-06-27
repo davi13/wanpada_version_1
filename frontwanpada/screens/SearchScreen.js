@@ -12,6 +12,7 @@ import {
 import { WebBrowser } from 'expo';
 import { Card, ListItem, Avatar, Badge } from 'react-native-elements'
 import { Ionicons } from '@expo/vector-icons';
+import {connect} from 'react-redux';
 
 import HeaderApp from '../components/HeaderApp';
 import { MonoText } from '../components/StyledText';
@@ -19,70 +20,47 @@ import SearchContainer from '../components/search/SearchContainer';
 import CardSearch from '../components/search/cards/CardSearch';
 import { styles } from '../styles/styleSearch'
 
-export default class SearchScreen extends Component {
+export default class SearchScreen extends React.Component {
   constructor(props) {
     super(props);
+    this.state={
+      users:[]
+    }
   }
+
 
   static navigationOptions = {
     header: null,
   };
 
-
+  componentDidMount() {
+  // Ici, nous sauvegardons la valeur de this dans ctx, afin de pouvoir y accéder depuis notre fonction fetch
+  const ctx = this;
+  // Ici, nous effectuons un appel asynchrone (fetch) de l'url qui contient notre liste d'utilisateurs
+  fetch('http://10.2.1.231:3000')
+  .then(function(response) {
+    // Une fois, la data récupérée, nous la transformons en json
+    return response.json();
+  })
+  .then(function(data) {
+    // Une fois transformée, en json, nous passons la data à notre state de users.
+    ctx.setState({ users: data });
+  })
+  .catch(function(err) {
+    console.log(err);
+  })
+}
 
   render() {
-    const users = [
-      {
-        name: 'Alexis hnr',
-        avatar: '../assets/images/avatar.jpg',
-        dist: '120km',
-        comp: ['Javascript', 'php', 'sass']
-       },
-      {
-        name: 'Daviel',
-        avatar: '../assets/images/avatar.jpg',
-        dist: '20km',
-        comp: ['Javascript', 'php', 'sass']
-      },
-      {
-        name: 'Alexis',
-        avatar: '../assets/images/avatar.jpg',
-        dist: '200km',
-        comp: ['Javascript', 'php', 'sass']
-      },
-      {
-        name: 'Gilles',
-        avatar: '../assets/images/avatar.jpg',
-        dist: '850km',
-        comp: ['Javascript', 'php', 'sass']
-      },
-      {
-        name: 'Alexis hnr 1',
-        avatar: '../assets/images/avatar.jpg',
-        dist: '500km',
-        comp: ['Javascript', 'php', 'sass']
-      },
-      {
-        name: 'Daviel 1',
-        avatar: '../assets/images/avatar.jpg',
-        dist: '1km',
-        comp: ['Javascript', 'php', 'sass']
-      },
-      {
-        name: 'Alexis 1',
-        avatar: '../assets/images/avatar.jpg',
-        dist: '60km',
-        comp: ['Javascript', 'php', 'sass']
-      },
-      {
-        name: 'Gilles pro',
-        avatar: '../assets/images/avatar.jpg',
-        dist: '60m',
-        comp: ['Javascript', 'php', 'sass']
-      },
-    ];
 
-    let usersItem = users.map((user, i) => <CardSearch key={i} name={user.name} dist={user.dist} comp={user.comp} />);
+    var users = this.state.users.map((user, i) => {
+      var i = 0;
+      return (
+        <CardSearch key={i} name={user.nom} comp={user.competences} id={user._id} />
+      )
+    }
+  )
+
 
     return (
       <ImageBackground style={styles.container} source={require("../assets/images/backgroundofficial.jpg")}>
@@ -90,7 +68,7 @@ export default class SearchScreen extends Component {
         <View style={styles.container}>
           <SearchContainer />
           <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-            { usersItem }
+            { users }
           </ScrollView>
         </View>
       </ImageBackground>

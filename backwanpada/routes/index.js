@@ -25,7 +25,17 @@ var userSchema = mongoose.Schema({
     }
 });
 
+var publishSchema= mongoose.Schema({
+  user_id: String,
+  date: { type: Date, default: Date.now },
+  nbOfLikes: Number,
+  comments: [{ body: String, date: Date }],
+  messages: String
+})
+
+          // MODELS IN MONGOOSE //
 var UserModel = mongoose.model('users', userSchema);
+var PublishModel = mongoose.model('publish', userSchema);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -126,4 +136,22 @@ router.post('/search',
   }
 );
 
+//
+
+
+/////// ROUTES POUR PUBLICATIONS //////
+
+router.post('/publish', function(req, res, next) {
+  var newPublish = new PublishModel({
+    user_id: String,
+    dateOfPublishing: String,
+    nbOfLikes: Number,
+    comments: Array,
+    message: String
+  })
+  newPublish.save(function(error, publication ) {
+    res.json(publication);
+  })
+});
+////////////////////////////////////////
 module.exports = router;
