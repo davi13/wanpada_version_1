@@ -11,7 +11,7 @@ class SearchScreen extends Component {
 
   SubmitBarSearch(values) {
     self = this;
-    
+
     fetch(URL.urlApp, {
       method: POST,
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
