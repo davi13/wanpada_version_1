@@ -39,12 +39,17 @@ class SignIn extends React.Component {
     }
   render() {
     return (
-      <View >
+      <View>
 
-         <Field name="Email"
+        <Field name="Email"
           component={textInput}
         />
-         <Field name="Password"
+
+        {/* <Field name="Password"
+          component={textInput}
+        /> */}
+
+        <Field name="Password"
           component={passwordInput}
         />
 
@@ -53,20 +58,20 @@ class SignIn extends React.Component {
           title="Sign In"
           textStyle={{ fontWeight: "700" }}
           buttonStyle={{
-            backgroundColor: "#00A6FB",
-            width: 200,
-            height: 45,
-            borderColor: "transparent",
-            borderWidth: 0,
-            borderRadius: 5
-          }}
-          containerStyle={{ marginTop: 20 }}
-        />
-      </View>
-    )
-  }
-}
+              backgroundColor: "#00A6FB",
+              width: 200,
+              height: 45,
+              borderColor: "transparent",
+              borderWidth: 0,
+              borderRadius: 5
+            }}
+            containerStyle={{ marginTop: 20 }}
+          />
+          </View>
+          )
+          }
+          }
 
-export default reduxForm({
-  form: 'signIn-form'
-})(SignIn)
+          export default reduxForm({
+            form: 'signIn-form'
+          })(SignIn)

@@ -15,6 +15,8 @@ mongoose.connect('mongodb://wanpada1:wanpada1@ds161790.mlab.com:61790/wanpada',
    }
 );
 
+// USER
+
 var userSchema = mongoose.Schema({
   nom: {type: String, required: true, min: 3, max: 10},
   prenom: {type: String, required: true, min: 3, max: 10},
@@ -33,7 +35,17 @@ var userSchema = mongoose.Schema({
   company : String
 });
 
+var publishSchema= mongoose.Schema({
+  user_id: String,
+  date: { type: Date, default: Date.now },
+  nbOfLikes: Number,
+  comments: [{ body: String, date: Date }],
+  messages: String
+})
+
+          // MODELS IN MONGOOSE //
 var UserModel = mongoose.model('users', userSchema);
+var PublishModel = mongoose.model('publish', userSchema);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -88,7 +100,56 @@ router.post('/signin', function(req, res, next) {
 
 /********************FIN CONNEXION *************************************/
 
-/*************************USER UPDATE**********************************/
+
+
+
+
+
+
+// NOUVELLE publication
+
+var publishSchema = mongoose.Schema({
+  userid: String,
+  date: String,
+  nbOfLikes: String,
+  comments: String,
+  message: String
+});
+
+var PublishModel = mongoose.model('publications', publishSchema);
+
+
+router.post('/newmessage', function(req, res, next) {
+  var newMessage = new PublishModel({
+    userid: req.body.userid,
+    date: req.body.date,
+    nbOfLikes: req.body.nbOfLikes,
+    comments: req.body.comments,
+    message: req.body.messages
+  })
+  newMessage.save(function(error, newMessage ) {
+    console.log(newMessage);
+    res.json(newMessage);
+  })
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 router.post('/update', function(req, res, next) {
 
   UserModel.update(
@@ -112,6 +173,7 @@ router.post('/update', function(req, res, next) {
 
 /*************************FIN USER UPDATE**********************************/
 
+>>>>>>> 3e53eb4c92d894f3404a4a09a2f2f28d96093417
 var MessageSchema = mongoose.Schema({
     conversationId: String,
     sendingUserId: String,
@@ -155,5 +217,23 @@ router.post('/search',
     )
   }
 );
+
+
+
+
+/////// ROUTES POUR PUBLICATIONS //////
+
+router.post('/publish', function(req, res, next) {
+  var newPublish = new PublishModel({
+    user_id: String,
+    dateOfPublishing: String,
+    nbOfLikes: Number,
+    comments: Array,
+    message: String
+  })
+  newPublish.save(function(error, publication ) {
+    res.json(publication);
+  })
+});
 
 module.exports = router;

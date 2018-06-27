@@ -1,16 +1,16 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Image, Text, View, } from 'react-native';
 import { WebBrowser } from 'expo';
 import { Badge, Rating } from 'react-native-elements'
 import { Ionicons } from '@expo/vector-icons';
+import {connect} from 'react-redux';
 
 import { styles } from '../../../styles/styleSearch';
 
 
-export default class CardSearch extends Component {
-
+class CardSearch extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.HandleOnPressLike = this.HandleOnPressLike.bind(this)
 
     this.state = {
@@ -22,6 +22,7 @@ export default class CardSearch extends Component {
   HandleOnPressLike() {
     let disLike = !this.state.like;
     this.setState({like: disLike});
+    this.props.clickFollow(this.props.name, this.props.comp, this.props.id)
     if(disLike == true) {
       this.setState({color: 'red'})
     }
@@ -47,11 +48,10 @@ export default class CardSearch extends Component {
                   {this.props.name}
                 </Text>
                 <Rating
-
-                type="star"
-                fractions={1}
-                imageSize={20}
-                style={{ paddingVertical: 10 }}
+                  type="star"
+                  fractions={1}
+                  imageSize={20}
+                  style={{ paddingVertical: 10 }}
                 />
 
               </View>
@@ -105,3 +105,17 @@ export default class CardSearch extends Component {
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    clickFollow: function(name, comp, id) {
+      // Ici, on dispatch les informations que l'on souhaite traiter dans notre reducer.
+      dispatch({ type: 'follow', name: name, comp: comp, id:id })
+    }
+  }
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(CardSearch);

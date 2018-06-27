@@ -9,6 +9,7 @@ import messagesData from '../data';
 import NavBar from '../NavBar';
 import CustomView from '../CustomView';
 
+
 Sentry.config('https://2a164b1e89424a5aafc186da811308cb@sentry.io/276804').install();
 
 const styles = StyleSheet.create({

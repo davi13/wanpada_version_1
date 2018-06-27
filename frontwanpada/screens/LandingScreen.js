@@ -44,6 +44,7 @@ class LandingScreen extends React.Component {
 
 
   SubmitsignUp(value) {
+    console.log("NUMERO 1")
     var display = false;
     var ctx = this;
     fetch(URL.urlApp+'/signup', {

@@ -58,6 +58,7 @@ class PowerOff extends React.Component {
 function mapDispatchToProps(dispatch) {
   return {
     powerOff: function(display) {
+      console.log("depuis le composant poweroff : click!")
       dispatch({type: 'poweroff', display});
     }
   }

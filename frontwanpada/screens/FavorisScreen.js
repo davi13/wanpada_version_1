@@ -11,15 +11,25 @@ import {
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
+import {connect} from 'react-redux';
+
 import HeaderApp from '../components/HeaderApp';
 import { MonoText } from '../components/StyledText';
 
-export default class FavorisScreen extends React.Component {
+class FavorisScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
 
   render() {
+
+    var followings = this.props.followings.map((user, i) => {
+        return(
+          <CardSearch key={i} name={user.name} comp={user.comp} id={user.id}/>
+        )
+      }
+    )
+
     return (
       <ImageBackground style={{flex: 1}} source={require("../assets/images/backgroundofficial.jpg")}>
         <View style={styles.container}>
@@ -27,9 +37,7 @@ export default class FavorisScreen extends React.Component {
 
           <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
 
-            <Text>
-              FAVORIS SCREEN
-            </Text>
+            {followings}
 
           </ScrollView>
 
@@ -40,6 +48,15 @@ export default class FavorisScreen extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  // Ici, on rend notre state.followings accessible à notre vue depuis props.followings
+  return { followings: followings }
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(FavorisScreen);
 
 
 const styles = StyleSheet.create({
