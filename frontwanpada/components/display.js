@@ -11,19 +11,8 @@ class Display extends Component {
   }
 
   render(){
-<<<<<<< HEAD
-    if (!this.props.display){
-=======
-    console.log('ici en bas la reponse Props');
-    console.log(this.props.user);
     if (this.props.display){
-      console.log("PREMIER LOG!!")
-      console.log(this.props.updateUser)
->>>>>>> a868a6ff1f827c964ca83b1c47c2df4760d13ffe
       return (<AppNavigator />)
-    }
-    if (this.props.updateUser){
-      return (<HomeScreen />)
     }
     else {
       return (<LandingScreen/>)
