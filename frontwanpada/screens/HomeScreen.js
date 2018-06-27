@@ -28,7 +28,7 @@ class HomeScreen extends Component {
 
   getAllUsers() {
     self = this
-    fetch('http://10.2.1.232:3000',
+    fetch('http://10.2.1.38:3000',
       {
         method: 'GET',
         headers: {
