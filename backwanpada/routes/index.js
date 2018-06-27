@@ -45,7 +45,6 @@ var publishSchema= mongoose.Schema({
 
           // MODELS IN MONGOOSE //
 var UserModel = mongoose.model('users', userSchema);
-var PublishModel = mongoose.model('publish', userSchema);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -173,7 +172,7 @@ router.post('/update', function(req, res, next) {
 
 /*************************FIN USER UPDATE**********************************/
 
->>>>>>> 3e53eb4c92d894f3404a4a09a2f2f28d96093417
+
 var MessageSchema = mongoose.Schema({
     conversationId: String,
     sendingUserId: String,

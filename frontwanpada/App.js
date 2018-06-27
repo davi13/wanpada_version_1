@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { combineReducers, createStore } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
-// import isVisible from './reducer/user.reducer';
+import isVisible from './reducer/user.reducer';
 import display from './reducer/display.reducer';
 import user from './reducer/user.reducer';
 import followings from './reducer/favoris.reducer'
