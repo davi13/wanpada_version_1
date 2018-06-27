@@ -16,6 +16,7 @@ import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 import {connect} from 'react-redux';
 
 import UserUpdate from './form/UserUpdate';
+import URL from '../../constants/Connect';
 
 
 
@@ -40,7 +41,7 @@ class Profile extends React.Component {
     ctx = this;
     //10.2.1.38
     //192.168.1.13
-    fetch('http://10.2.1.38:3000/update', {
+    fetch(URL.urlApp+'/update', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
       body: 'id='+this.props.user[0]._id+'&nom='+values.Nom+'&prenom='+values.Prenom+'&email='+values.Email+'&password='+values.Password+'&ville='+values.Ville+'&company='+values.Company+'&university='+values.University
@@ -115,7 +116,7 @@ class Profile extends React.Component {
           </Overlay>
         </Modal>
 
-        <Text h1 style={profile.title_profile}>{this.props.user[0].nom} </Text>
+        <Text h1 style={profile.title_profile}>{this.props.user.nom} </Text>
         <Text h2 style={profile.text_profile}> La Capsule academy</Text>
         <Text h2 style={profile.text_profile}> La Sorbonne</Text>
 

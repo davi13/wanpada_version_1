@@ -83,6 +83,7 @@ class LandingScreen extends React.Component {
   ///   FORMULAIRE CONNEXION   //
   ///////////////////////////////
   SubmitsignIn(value) {
+    console.log("test depuis submitsignin")
     console.log(value);
     var display = false;
     var ctx = this;
@@ -101,14 +102,8 @@ class LandingScreen extends React.Component {
         this.setState({msgErr: 'Mince il y a des erreurs au niveau des champs', notConnected: true})
       }
       else {
-        if(data._id){
           display = true;
           ctx.props.onSigninClick(data, display);
-        }
-        else {
-          ctx.props.onSigninClick(data, display);
-        }
-        console.log(data);
       }
     })
     .catch(function(error) {
@@ -192,7 +187,7 @@ function mapDispatchToProps(dispatch) {
         dispatch({ type: 'userSignin', user, display });
     },
     onSignUpClick: function(user, display) {
-        dispatch( {type: 'userSignUp', user, display } );
+        dispatch( {type: 'userSignUp', user, display });
     }
   }
 }

@@ -82,7 +82,6 @@ router.post('/signup', function(req, res, next){
 
 /*************************CONNEXION**********************************/
 router.post('/signin', function(req, res, next) {
-
   UserModel.find(
     {email: req.body.email, password: CryptoJS.SHA512(req.body.password).toString()},
     function (err, user){
