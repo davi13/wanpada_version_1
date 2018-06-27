@@ -153,7 +153,7 @@ router.post('/newmessage', function(req, res, next) {
 router.post('/update', function(req, res, next) {
 
   UserModel.update(
-    {email: req.body.email},
+    {_id: req.body.id},
     {
      nom: req.body.nom,
      prenom: req.body.prenom,
@@ -165,6 +165,8 @@ router.post('/update', function(req, res, next) {
      university: req.body.university,
      company: req.body.company
     },function(error, user) {
+      console.log('=====================+++++++++'+error);
+      console.log('=====================+++++++++'+user);
        res.json(user);
     }
   );
@@ -173,7 +175,6 @@ router.post('/update', function(req, res, next) {
 
 /*************************FIN USER UPDATE**********************************/
 
->>>>>>> 3e53eb4c92d894f3404a4a09a2f2f28d96093417
 var MessageSchema = mongoose.Schema({
     conversationId: String,
     sendingUserId: String,
