@@ -32,22 +32,23 @@ var userSchema = mongoose.Schema({
   competences: { type: Array, required: false },
   ville : String,
   university: String,
-  company : String
+  company : String,
+  favory: { type: Array, required: false }
 });
 
-var publishSchema= mongoose.Schema({
+var publishSchema = mongoose.Schema({
   user_id: String,
   date: { type: Date, default: Date.now },
   nbOfLikes: Number,
   comments: [{ body: String, date: Date }],
   messages: String
-})
+});
 
           // MODELS IN MONGOOSE //
 var UserModel = mongoose.model('users', userSchema);
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/users', function(req, res, next) {
   UserModel.find(
     (err, users) => {
       console.log(users)
@@ -55,6 +56,21 @@ router.get('/', function(req, res, next) {
     }
   );
 });
+
+router.post('/favoris', function(req, res, next) {
+
+  UserModel.update(
+    {_id: req.body.id},
+    {
+     favory: req.body.favoris
+    },function(error, user) {
+      console.log("l'update favoris fonctionne");
+      console.log(user);
+       res.json(user);
+    }
+  );
+}
+);
 
 
 /******************** INSCRIPTION *****************************/
