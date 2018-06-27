@@ -18,6 +18,8 @@ import {connect} from 'react-redux';
 import UserUpdate from './form/UserUpdate';
 import URL from '../../constants/Connect';
 
+import URL from '../../constants/Connect'
+
 
 
 class Profile extends React.Component {
@@ -44,16 +46,16 @@ class Profile extends React.Component {
     fetch(URL.urlApp+'/update', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
-      body: 'id='+this.props.user[0]._id+'&nom='+values.Nom+'&prenom='+values.Prenom+'&email='+values.Email+'&password='+values.Password+'&ville='+values.Ville+'&company='+values.Company+'&university='+values.University
+      body: 'id='+this.props.user._id+'&nom='+values.Nom+'&prenom='+values.Prenom+'&email='+values.Email+'&password='+values.Password+'&ville='+values.Ville+'&company='+values.Company+'&university='+values.University
     })
     .then((res) => res.json())
 
     .then((data) => {
-      
+
       console.log("le fetch de l'update fonctionne jusqu'ici, MAGGLE!")
 
       console.log("ici on met a jour le state avec les new infos")
-      
+
       // ctx.setState({update: true})
 
       // var changeState =  this.state.update
@@ -76,7 +78,7 @@ class Profile extends React.Component {
   render(){
     console.log('ici en bas la reponse state profile');
     console.log(this.props.user);
-    
+
     var displayProfile = this.props.profile;
     var colorHeart = {};
 
@@ -86,7 +88,7 @@ class Profile extends React.Component {
     }
 
       console.log(this.state.isVisible);
-      
+
 
       return(
 
@@ -94,31 +96,31 @@ class Profile extends React.Component {
         <Image style={{borderRadius: 30, height: 60, width: 60, marginTop:20, marginRight: 'auto', marginLeft:'auto'}} source={require("../../assets/images/avatar-1.jpg")} />
 
         <View style={{position: 'absolute', top: 20, right: -5}}>
-            <Ionicons name="md-heart" size={32} style={colorHeart}
+          <Ionicons name="md-heart" size={32} style={colorHeart}
             // activation de la fonction contenue dans le dispatch
             onPress={() => { this.props.handleProfile() }} />
         </View>
 
-         <View style={{position: 'absolute', top: 20, left: 0}}>
+        <View style={{position: 'absolute', top: 20, left: 0}}>
 
-            <MaterialCommunityIcons name="account-edit" size={32} style={colorHeart}
-            
+          <MaterialCommunityIcons name="account-edit" size={32} style={colorHeart}
+
             onPress={() => this.setState({isVisible: true })} />
         </View>
 
         <Modal animationType='slide' transparent={false}  visible={this.state.isVisible}>
           <Overlay fullScreen={true} isVisible={this.state.isVisible}>
             <View style={{flex:1,justifyContent: 'center',alignItems: 'center' }}>
-               
-               <UserUpdate onSubmit={this.onSubmitUserUpdate} />    
-              
+
+              <UserUpdate onSubmit={this.onSubmitUserUpdate} />
+
             </View>
           </Overlay>
         </Modal>
 
-        <Text h1 style={profile.title_profile}>{this.props.user.nom} </Text>
-        <Text h2 style={profile.text_profile}> La Capsule academy</Text>
-        <Text h2 style={profile.text_profile}> La Sorbonne</Text>
+        <Text h1 style={profile.title_profile}>{this.props.user.nom}</Text>
+        <Text h2 style={profile.text_profile}> {this.props.user.company}</Text>
+        <Text h2 style={profile.text_profile}>{this.props.user.university}</Text>
 
         <View style={{display: 'flex', flexDirection: 'row', marginTop:10}}>
 
@@ -177,7 +179,7 @@ function mapDispatchToProps(dispatch) {
 //   }
 // }
 export default connect(
-  mapStateToProps, 
+  mapStateToProps,
   mapDispatchToProps
 )(Profile);
 

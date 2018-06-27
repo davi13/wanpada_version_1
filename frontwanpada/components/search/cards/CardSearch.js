@@ -20,14 +20,16 @@ class CardSearch extends React.Component {
   }
 
   HandleOnPressLike() {
-    let disLike = !this.state.like;
-    this.setState({like: disLike});
-    this.props.clickFollow(this.props.name, this.props.comp, this.props.id)
-    if(disLike == true) {
+    let like = !this.state.like;
+    this.setState({like: like});
+
+    if(like == true) {
       this.setState({color: 'red'})
+      this.props.clickAddFollow(this.props.id, like)
     }
     else {
         this.setState({color: '#333'})
+        this.props.clickDeleteFollow(this.props.id, like)
     }
   }
 
@@ -59,10 +61,10 @@ class CardSearch extends React.Component {
           </View>
           <View style={{position: 'absolute', top: 20, right: 15}}>
 
-          <Badge containerStyle={styles.dist_profile}
-            value={this.props.dist}
-            textStyle={{ color: 'white' }}
-          />
+            <Badge containerStyle={styles.dist_profile}
+              value={this.props.dist}
+              textStyle={{ color: 'white' }}
+            />
 
           </View>
         </View>
@@ -72,21 +74,21 @@ class CardSearch extends React.Component {
             backgroundColor: '#00A6FB',
             marginRight: 10,
             height: 20,
-            borderRadius: 8}}>
+          borderRadius: 8}}>
             <Text style={styles.text}>Competences</Text>
           </Badge>
           <Badge containerStyle={{   width: 100,
             backgroundColor: '#00A6FB',
             marginRight: 10,
             height: 20,
-            borderRadius: 8}}>
+          borderRadius: 8}}>
             <Text style={styles.text}>Compétences</Text>
           </Badge>
           <Badge containerStyle={{   width: 100,
             backgroundColor: '#00A6FB',
             marginRight: 10,
             height: 20,
-            borderRadius: 8}}>
+          borderRadius: 8}}>
             <Text style={styles.text}>Competences</Text>
           </Badge>
         </View>
@@ -108,9 +110,13 @@ class CardSearch extends React.Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    clickFollow: function(name, comp, id) {
+    clickAddFollow: function(id, like) {
       // Ici, on dispatch les informations que l'on souhaite traiter dans notre reducer.
-      dispatch({ type: 'follow', name: name, comp: comp, id:id })
+      dispatch({ type: 'addfollow', id, like })
+    },
+    clickDeleteFollow: function(id) {
+      // Ici, on dispatch les informations que l'on souhaite traiter dans notre reducer.
+      dispatch({ type: 'deletefollow', id })
     }
   }
 }

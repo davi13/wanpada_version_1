@@ -31,7 +31,7 @@ class HomeScreen extends Component {
 
   getAllUsers() {
     self = this
-    fetch(URL.urlApp,
+    fetch(URL.urlApp+'/users',
       {
         method: 'GET',
         headers: {
@@ -47,7 +47,7 @@ class HomeScreen extends Component {
     })
   }
 
-  
+
 
   render() {
     console.log("hello ceci est un test!!")

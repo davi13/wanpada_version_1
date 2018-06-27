@@ -7,7 +7,7 @@ import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity,
 import { WebBrowser } from 'expo';
 import {connect} from 'react-redux';
 
-import CardHome from '../components/homepage/cardHome/CardHome';
+import CardSearch from '../components/search/cards/CardSearch';
 import ModalHome from '../components/homepage/modal/ModalHome';
 import HeaderApp from '../components/HeaderApp';
 
@@ -54,7 +54,7 @@ class FavorisScreen extends Component {
     var user = this.props.user
     // console.log(user)
     // console.log(this.props.user)
-    const userItem = this.state.usersList.map((item, index) => <CardHome key={index} nom={item.nom} prenom={item.prenom} />);
+    const followings = this.props.followings.map((item, index) => <CardSearch key={index} nom={item.nom} prenom={item.prenom} />);
 
     return (
       <ImageBackground style={{flex: 1}} source={require("../assets/images/backgroundofficial.jpg")}>
@@ -63,7 +63,7 @@ class FavorisScreen extends Component {
         <View style={styles.container}>
           <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
 
-            { userItem }
+            { followings }
             <ModalHome />
 
           </ScrollView>
@@ -74,7 +74,7 @@ class FavorisScreen extends Component {
 }
 
 function mapStateToProps(state) {
-    return { display: state.display, user: state.user }
+    return { followings: state.followings }
 }
 
 

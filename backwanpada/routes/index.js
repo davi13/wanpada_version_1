@@ -32,22 +32,23 @@ var userSchema = mongoose.Schema({
   competences: { type: Array, required: false },
   ville : String,
   university: String,
-  company : String
+  company : String,
+  favory: { type: Array, required: false }
 });
 
-var publishSchema= mongoose.Schema({
+var publishSchema = mongoose.Schema({
   user_id: String,
   date: { type: Date, default: Date.now },
   nbOfLikes: Number,
   comments: [{ body: String, date: Date }],
   messages: String
-})
+});
 
           // MODELS IN MONGOOSE //
 var UserModel = mongoose.model('users', userSchema);
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/users', function(req, res, next) {
   UserModel.find(
     (err, users) => {
       console.log(users)
@@ -55,6 +56,21 @@ router.get('/', function(req, res, next) {
     }
   );
 });
+
+router.post('/favoris', function(req, res, next) {
+
+  UserModel.update(
+    {_id: req.body.id},
+    {
+     favory: req.body.favoris
+    },function(error, user) {
+      console.log("l'update favoris fonctionne");
+      console.log(user);
+       res.json(user);
+    }
+  );
+}
+);
 
 
 /******************** INSCRIPTION *****************************/
@@ -64,7 +80,11 @@ router.post('/signup', function(req, res, next){
     nom: req.body.nom,
     prenom: req.body.prenom,
     email: req.body.email,
-    password: req.body.password
+    password: CryptoJS.SHA512(req.body.password).toString(),
+    ville: "Saisissez votre ville",
+    company: "Saisissez votre entreprise",
+    university: "Saisissez votre université",
+
   });
   newUser.save(
     function(err, user){
@@ -82,8 +102,9 @@ router.post('/signup', function(req, res, next){
 
 /*************************CONNEXION**********************************/
 router.post('/signin', function(req, res, next) {
-  UserModel.find(
-    {email: req.body.email, password: req.body.password},
+
+  UserModel.findOne(
+    {email: req.body.email, password: CryptoJS.SHA512(req.body.password).toString()},
     function (err, user){
       console.log(user);
       if(err) {
@@ -157,14 +178,14 @@ router.post('/update', function(req, res, next) {
      prenom: req.body.prenom,
      email: req.body.email,
      password: CryptoJS.SHA512(req.body.password).toString(),
-     competences: req.body.competences,
-     content: req.body.content,// un tableau d'objet content date de creation et contenu publication
+     // competences: req.body.competences,
+     // content: req.body.content,// un tableau d'objet content date de creation et contenu publication
      ville: req.body.ville,
      university: req.body.university,
      company: req.body.company
     },function(error, user) {
-      console.log('=====================+++++++++'+error);
-      console.log('=====================+++++++++'+user);
+      console.log("ca marche");
+      console.log(user);
        res.json(user);
     }
   );
