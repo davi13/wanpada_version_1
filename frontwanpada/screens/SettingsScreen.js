@@ -31,7 +31,6 @@ class SettingsScreen extends React.Component {
   }
 
   render() {
-    console.log("HOLALALAL")
 
 
     return (
