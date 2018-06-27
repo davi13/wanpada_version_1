@@ -11,13 +11,8 @@ class Display extends Component {
   }
 
   render(){
-    console.log('ici en bas la reponse Props');
-    console.log('stringggggggggggg');
-    
-    console.log(this.props.display);
-
     if (this.props.display){
-      return (<AppNavigator/>)
+      return (<AppNavigator />)
     }
     else {
       return (<LandingScreen/>)

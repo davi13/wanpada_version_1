@@ -100,11 +100,13 @@ class LandingScreen extends React.Component {
 
       if(data == false) {
         this.setState({msgErr: 'Mince il y a des erreurs au niveau des champs', notConnected: true})
-      }
-      else {
+        
+      } else {
           display = true;
           ctx.props.onSigninClick(data, display);
-      }
+        }
+        console.log("LE BIG TEST DE GILLES!");
+        // console.log(data);
     })
     .catch(function(error) {
       console.log('Request failed', error)
@@ -135,7 +137,7 @@ class LandingScreen extends React.Component {
     return (
       <ImageBackground style={{flex: 1}} source={require("../assets/images/backgroundofficial.jpg")}>
         <View style={{flex:1,justifyContent: 'center',alignItems: 'center' }}>
-              <Text h1 style={{color: "red", fontSize: 20, marginBottom: 20, textAlign: 'center', padding: 5}}>{errConnect}</Text>
+          <Text h1 style={{color: "red", fontSize: 20, marginBottom: 20, textAlign: 'center', padding: 5}}>{errConnect}</Text>
               <Text h1 style={{color: "#FFFFFF", fontSize: 50, fontWeight: "700", marginBottom: 20}}> WanPada</Text>
               <Text h3 style={{color: "#FFFFFF", fontSize: 20, fontWeight: "500", marginBottom: 50}}> Le Conseil au bout des doigts</Text>
               <Button title="Connexion"
@@ -183,11 +185,11 @@ class LandingScreen extends React.Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSigninClick: function(user, display) {
-        dispatch({ type: 'userSignin', user, display });
+    onSigninClick: function(user) {
+        dispatch({ type: 'userSignIn', user });
     },
     onSignUpClick: function(user, display) {
-        dispatch( {type: 'userSignUp', user, display });
+        dispatch( {type: 'userSignUp', user } );
     }
   }
 }
