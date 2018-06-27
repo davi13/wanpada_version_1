@@ -44,6 +44,7 @@ class LandingScreen extends React.Component {
     var display = false;
     var ctx = this;
     //10.2.1.38
+    //192.168.1.13
     fetch('http://10.2.1.38:3000/signup', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
@@ -86,6 +87,7 @@ class LandingScreen extends React.Component {
     var display = false;
     var ctx = this;
     //10.2.1.38
+    //192.168.1.13
     fetch('http://10.2.1.38:3000/signin', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},

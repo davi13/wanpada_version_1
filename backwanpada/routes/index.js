@@ -18,16 +18,16 @@ var userSchema = mongoose.Schema({
   nom: {type: String, required: true, min: 3, max: 10},
   prenom: {type: String, required: true, min: 3, max: 10},
   password: {type: String, required: true},
-  content: {type: String, required: true},
+  content: {type: String, required: false},
   email: {
     type: String,
     trim: true,
     lowercase: true,
     unique: true,
-    required: 'Email address is required',
+    required: true,
     match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     }, 
-    competences: Array,
+    competences: {type:Array, required: false},
     ville : String,
     university: String,
     company : String
@@ -53,15 +53,19 @@ router.post('/signup', function(req, res, next){
       nom: req.body.nom,
       prenom: req.body.prenom,
       email: req.body.email,
-      password: hashedPassword,
+      //password: hashedPassword,
+      password: req.body.password,
       competences: [],
       content: [],// un tableau d'objet content date de creation et contenu publication
       ville: '',
       university: '',
       company: ''
   });
+  console.log('================>'+newUser)
     newUser.save(
+      
       function(err, user){
+        console.log('================>'+err);
         if(err) {
           res.json(false);
         }
@@ -99,18 +103,21 @@ router.post('/signin', function(req, res, next) {
 router.post('/update', function(req, res, next) {
   
   UserModel.update(
-    {email: req.body.email},
+    {_id: req.body.id},
     {
      nom: req.body.nom,
      prenom: req.body.prenom,
      email: req.body.email,
-     password: hashedPassword,
-     competences: req.body.competences,
-     content: req.body.content,// un tableau d'objet content date de creation et contenu publication
+     //password: hashedPassword,
+     password: req.body.password,
+    //  competences: req.body.competences,
+    //  content: req.body.content,// un tableau d'objet content date de creation et contenu publication
      ville: req.body.ville,
      university: req.body.university,
      company: req.body.company
     },function(error, user) {
+      console.log('=====================+++++++++'+error);
+      console.log('=====================+++++++++'+user);
        res.json(user);
     }
   );

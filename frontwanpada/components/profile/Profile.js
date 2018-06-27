@@ -23,40 +23,47 @@ class Profile extends React.Component {
 
   constructor() {
     super();
-    this.state = {visible : false,  isVisible: false }
+    this.state = {visible : false,  isVisible: false, update: false }
+    this.onSubmitUserUpdate = this.onSubmitUserUpdate.bind(this);
   }
 
   static navigationOptions = {
     header: null
   };
 
-  onSubmitUserUpdate() {
-    this.setStateS({ isVisible: false })
+  onSubmitUserUpdate(values) {
+    newUpdate = false;
+    console.log("ici on va tester la value")
+    console.log(values.Nom)
+
+    this.setState({ isVisible: false })
     ctx = this;
     //10.2.1.38
+    //192.168.1.13
     fetch('http://10.2.1.38:3000/update', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
-      body: 'nom='+value.Nom+'&prenom='+value.Prenom+'&email='+value.Email+'&password='+value.Password+'&ville='+value.Ville+'&company='+value.Company+'&university='+value.University+'&note='+value.Note
+      body: 'id='+this.props.user[0]._id+'&nom='+values.Nom+'&prenom='+values.Prenom+'&email='+values.Email+'&password='+values.Password+'&ville='+values.Ville+'&company='+values.Company+'&university='+values.University
     })
     .then((res) => res.json())
 
     .then((data) => {
-      if(data._id){
-
-        display = true;
-
-        ctx.props.onUpdateClick(data);
-
-      }else {
-
-        ctx.props.onUpdateClick(data);
-
-      }
-
-      console.log(data);
       
-       
+      console.log("le fetch de l'update fonctionne jusqu'ici, MAGGLE!")
+
+      console.log("ici on met a jour le state avec les new infos")
+      
+      // ctx.setState({update: true})
+
+      // var changeState =  this.state.update
+
+      // if(this.state.update){
+
+      //   console.log("test depuis profile......")
+
+        ctx.props.onUpdateClick(values.Nom, values.Prenom, values.Email, values.Password, values.Ville, values.Company, values.University)
+      // }
+
     })
     .catch(function(error) {
       console.log('Request failed', error)
@@ -66,6 +73,9 @@ class Profile extends React.Component {
 
 
   render(){
+    console.log('ici en bas la reponse state profile');
+    console.log(this.props.user);
+    
     var displayProfile = this.props.profile;
     var colorHeart = {};
 
@@ -99,13 +109,13 @@ class Profile extends React.Component {
           <Overlay fullScreen={true} isVisible={this.state.isVisible}>
             <View style={{flex:1,justifyContent: 'center',alignItems: 'center' }}>
                
-               <UserUpdate onSubmit={()=> this.onSubmitUserUpdate()} />    
+               <UserUpdate onSubmit={this.onSubmitUserUpdate} />    
               
             </View>
           </Overlay>
         </Modal>
 
-        <Text h1 style={profile.title_profile}> John Doe </Text>
+        <Text h1 style={profile.title_profile}>{this.props.user[0].nom} </Text>
         <Text h2 style={profile.text_profile}> La Capsule academy</Text>
         <Text h2 style={profile.text_profile}> La Sorbonne</Text>
 
@@ -142,18 +152,33 @@ class Profile extends React.Component {
 
   }
 }
+function mapStateToProps(state) {
+  return { user: state.user}
+}
 
 
 
 function mapDispatchToProps(dispatch) {
   return {
-    onUpdateClick: function() {
-      dispatch({type: 'USER_UPDATE', data});
-    }
+    onUpdateClick: function(nom, prenom, email, password, ville, entreprise, universite) {
+        dispatch({ type: 'update', nom, prenom, email, password, ville, entreprise, universite  });
+    },
   }
 }
 
-export default connect(null, mapDispatchToProps,)(Profile);
+
+// function mapDispatchToProps(dispatch) {
+
+//   return {
+//     onUpdateClick: function() {
+//       dispatch({type: 'USER_UPDATE', data});
+//     }
+//   }
+// }
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(Profile);
 
 
 const profile = StyleSheet.create({
