@@ -33,7 +33,7 @@ function passwordInput(props) {
   );
 }
 
-class SignUp extends React.Component {
+class UserUpdate extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -54,10 +54,28 @@ class SignUp extends React.Component {
          <Field name="Password"
           component={passwordInput}
         />
+        <Field name="Ville"
+          component={textInput}
+        />
+
+
+        <Field name="Company"
+          component={textInput}
+        />
+
+
+        <Field name="Université"
+          component={textInput}
+        />
+
+
+        <Field name="Note"
+          component={textInput}
+        />
 
         <Button
           onPress={this.props.handleSubmit}
-          title="Sign Up"
+          title="Update"
           textStyle={{ fontWeight: "700" }}
           buttonStyle={{
             backgroundColor: "#00A6FB",
@@ -75,5 +93,5 @@ class SignUp extends React.Component {
 }
 
 export default reduxForm({
-  form: 'signUp-form'
-})(SignUp)
+  form: 'UserUpdate-form'
+})(UserUpdate)

@@ -10,12 +10,12 @@ import { reducer as formReducer } from 'redux-form';
 // import isVisible from './reducer/user.reducer';
 import display from './reducer/display.reducer';
 import user from './reducer/user.reducer';
-// import newmessage from './reducer/user.reducer';
+import followings from './reducer/favoris.reducer'
 
 import Display from './components/display'
 
 
-var globalReducers= combineReducers({ form: formReducer, user, display });
+var globalReducers= combineReducers({ form: formReducer, isVisible, user, display, followings });
 
 const store = createStore(globalReducers);
 

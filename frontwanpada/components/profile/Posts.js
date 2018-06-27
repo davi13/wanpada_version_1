@@ -23,12 +23,8 @@ class Posts extends React.Component {
 
 
     this.state = {
-      ///POUR VOIR PLUS D'AVIS///
       seeMoreAvis: false,
-      ///////FIN ///////////
-      ///POUR VOIR PLUS DE POSTS///
       seeMorePosts: false,
-      ///////FIN ///////////
 
       seeAvis:'',
       seePosts:'',
@@ -110,7 +106,7 @@ class Posts extends React.Component {
     console.log("HOLALALAL")
 
     var displayPost = this.props.posts;
-
+console.log('+++++++++++++++++++>'+displayPost)
 
     //// CONDITION POUR DEROULER LES AVIS///
     var copylistAvis= this.state.listAvis.concat()
@@ -122,9 +118,8 @@ class Posts extends React.Component {
       this.state.seeAvis = '-'
       copylistAvis= this.state.listAvis
     }
-    ///////FIN ///////////
 
-    /// CONDITION POUR DEROULER LES POSTS///
+    /* CONDITION POUR DEROULER LES POSTS*/
     var copylistPosts= this.state.listPosts.concat()
     if (this.state.seeMorePosts == false) {
       this.state.seePosts = '+'
@@ -134,67 +129,43 @@ class Posts extends React.Component {
       this.state.seePosts = '-'
       copylistPosts= this.state.listPosts
     }
-    ///////FIN ///////////
 
     return (
+      <View>
+        <View style={{borderBottomWidth: 0.5, borderColor: '#D8D8D8', marginBottom:5}}>
+          <Text h2 style={profile.profile_title}> Mes avis </Text>
 
+          {copylistPosts}
 
-<View>
-    <View style={{borderBottomWidth: 0.5, borderColor: '#D8D8D8', marginBottom:5}}>
-        <Text h2 style={profile.profile_title}> Mes avis </Text>
+          <Button
+            title={this.state.seePosts}
+            loading={false}
+            loadingProps={{ size: 'small', color: 'white' }}
+            buttonStyle={{ borderRadius: 40, marginTop: 20, marginBottom: 20, width: 37, marginLeft: 'auto', marginRight: 'auto', backgroundColor: '#00A6FB' }}
+            textStyle={{ fontWeight: 'bold', fontSize: 23 }}
+            onPress={() => this.props.handleClickSeePosts()}
+            underlayColor="transparent"
+          />
 
+        </View>
+        <Text h2 style={profile.profile_title}> Mes publications </Text>
 
+        <View>
+          {copylistAvis}
+        </View>
 
-        ///AFFICHAGES LISTE POSTS///
-        {copylistPosts}
-        ///////FIN ///////////
-
-        ///BOUTONS POUR DEROULER LES POSTS///
         <Button
-        title={this.state.seePosts}
-        loading={false}
-        loadingProps={{ size: 'small', color: 'white' }}
-        buttonStyle={{ borderRadius: 40, marginTop: 20, marginBottom: 20, width: 37, marginLeft: 'auto', marginRight: 'auto', backgroundColor: '#00A6FB' }}
-
-        textStyle={{ fontWeight: 'bold', fontSize: 23 }}
-        onPress={() => this.props.handleClickSeePosts()}
-
-
-        underlayColor="transparent"
+          title={this.state.seeAvis}
+          loading={false}
+          loadingProps={{ size: 'small', color: 'white' }}
+          buttonStyle={{ borderRadius: 40, marginTop: 20, marginBottom: 20, width: 37, marginLeft: 'auto', marginRight: 'auto', backgroundColor: '#00A6FB' }}
+          textStyle={{ fontWeight: 'bold', fontSize: 23 }}
+          onPress={() => this.propos.handleClickSeeAvis()}
+          underlayColor="transparent"
         />
-        ///////FIN ///////////
-
-
-    </View>
-    <Text h2 style={profile.profile_title}> Mes publications </Text>
-
-    <View>
-        /// AFFICHAGE LISTE D'AVIS///
-        {copylistAvis}
-        ///////FIN ///////////
-
-    </View>
-
-
-
-    /// BOUTON POUR DEROULER LES AVIS ///
-    <Button
-    title={this.state.seeAvis}
-    loading={false}
-    loadingProps={{ size: 'small', color: 'white' }}
-    buttonStyle={{ borderRadius: 40, marginTop: 20, marginBottom: 20, width: 37, marginLeft: 'auto', marginRight: 'auto', backgroundColor: '#00A6FB' }}
-    textStyle={{ fontWeight: 'bold', fontSize: 23 }}
-    onPress={() => this.propos.handleClickSeeAvis()}
-
-
-    underlayColor="transparent"
-    />
-    ///////FIN ///////////
-
-</View>
-
-)
-}
+      </View>
+    )
+  }
 }
 
 

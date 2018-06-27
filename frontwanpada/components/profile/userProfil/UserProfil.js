@@ -15,28 +15,37 @@ import {
 import { WebBrowser } from 'expo';
 import {connect} from 'react-redux'
 
-import Profile from '../components/profile/Profile';
-import Posts from '../components/profile/Posts';
+import Profile from '../Profile';
+import Posts from '../Posts';
 
-class SettingsScreen extends React.Component {
+class UserProfil extends React.Component {
   static navigationOptions = {
     header: null,
   };
 
+
+
+
+
   handleClick(){
+    /// POUR LIKER
     var isLike = !this.state.like;
     this.setState(
       {like : isLike}
     );
   }
+  ///////FIN ///////////
+
+
+
 
   render() {
     console.log("HOLALALAL")
 
 
     return (
-      <ImageBackground style={{flex: 1}} source={require("../assets/images/backgroundofficial.jpg")}>
-
+      
+        <View>
           <Header
           statusBarProps={{ barStyle: 'light-content'}}
           centerComponent={{ text: "Timeline", style: { color: '#fff', fontSize: 20 } }}
@@ -55,19 +64,22 @@ class SettingsScreen extends React.Component {
              </ScrollView>
             </View>
           </View>
-      </ImageBackground>
+        </View>
       );
     }
   }
 
   function mapStateToProps(state) {
-    return { profile: state.profile, posts: state.posts, avis: state.avis }
+      return { profile: state.profile,
+               posts: state.posts,
+               avis: state.avis
+            }
   }
 
   export default connect(
-    mapStateToProps,
-    null
-  )(SettingsScreen);
+      mapStateToProps,
+          null
+  )(UserProfil);
 
   const profile = StyleSheet.create({
     profile_section:{

@@ -30,12 +30,22 @@ var userSchema = mongoose.Schema({
     match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     },
     competences: Array,
-    city : String,
-    school: String,
+    ville : String,
+    university: String,
     company : String
 });
 
+var publishSchema= mongoose.Schema({
+  user_id: String,
+  date: { type: Date, default: Date.now },
+  nbOfLikes: Number,
+  comments: [{ body: String, date: Date }],
+  messages: String
+})
+
+          // MODELS IN MONGOOSE //
 var UserModel = mongoose.model('users', userSchema);
+var PublishModel = mongoose.model('publish', userSchema);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -58,8 +68,8 @@ router.post('/signup', function(req, res, next){
       password: hashedPassword,
       competences: [],
       content: [],// un tableau d'objet content date de creation et contenu publication
-      city: '',
-      school: '',
+      ville: '',
+      university: '',
       company: ''
   });
     newUser.save(
@@ -147,7 +157,31 @@ router.post('/newmessage', function(req, res, next) {
 
 
 
-// MESSAGE TESTS
+
+router.post('/update', function(req, res, next) {
+
+  UserModel.update(
+    {email: req.body.email},
+    {
+     nom: req.body.nom,
+     prenom: req.body.prenom,
+     email: req.body.email,
+     password: hashedPassword,
+     competences: req.body.competences,
+     content: req.body.content,// un tableau d'objet content date de creation et contenu publication
+     ville: req.body.ville,
+     university: req.body.university,
+     company: req.body.company
+    },function(error, user) {
+       res.json(user);
+    }
+  );
+}
+);
+
+/*************************FIN USER UPDATE**********************************/
+
+>>>>>>> 3e53eb4c92d894f3404a4a09a2f2f28d96093417
 var MessageSchema = mongoose.Schema({
     conversationId: String,
     sendingUserId: String,
@@ -193,5 +227,21 @@ router.post('/search',
 );
 
 
+
+
+/////// ROUTES POUR PUBLICATIONS //////
+
+router.post('/publish', function(req, res, next) {
+  var newPublish = new PublishModel({
+    user_id: String,
+    dateOfPublishing: String,
+    nbOfLikes: Number,
+    comments: Array,
+    message: String
+  })
+  newPublish.save(function(error, publication ) {
+    res.json(publication);
+  })
+});
 
 module.exports = router;
