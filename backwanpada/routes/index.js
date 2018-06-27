@@ -45,7 +45,6 @@ var publishSchema= mongoose.Schema({
 
           // MODELS IN MONGOOSE //
 var UserModel = mongoose.model('users', userSchema);
-var PublishModel = mongoose.model('publish', userSchema);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
