@@ -36,19 +36,19 @@ class SettingsScreen extends React.Component {
     return (
       <ImageBackground style={{flex: 1}} source={require("../assets/images/backgroundofficial.jpg")}>
 
-          <Header
+        <Header
           statusBarProps={{ barStyle: 'light-content'}}
           centerComponent={{ text: "Timeline", style: { color: '#fff', fontSize: 20 } }}
           outerContainerStyles={{ backgroundColor: '#00A6FB' }}
-          />
+        />
 
-          <View style={styles.container}>
+        <View style={styles.container}>
           <View style={profile.profile_card}>
-             <ScrollView>
+            <ScrollView>
 
-               <Profile/>
+              <Profile/>
 
-               <Posts/>
+              <Posts/>
 
 
              </ScrollView>
