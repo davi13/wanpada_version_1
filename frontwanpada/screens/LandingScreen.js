@@ -86,7 +86,7 @@ class LandingScreen extends React.Component {
     console.log(value);
     var display = false;
     var ctx = this;
-    //10.2.1.38
+  
     fetch(URL.urlApp+'/signin', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},

@@ -64,12 +64,7 @@ class UserUpdate extends React.Component {
         />
 
 
-        <Field name="Université"
-          component={textInput}
-        />
-
-
-        <Field name="Note"
+        <Field name="University"
           component={textInput}
         />
 
