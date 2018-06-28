@@ -152,6 +152,15 @@ router.post('/newmessage', function(req, res, next) {
   })
 });
 
+router.get('/messages', function(req, res, next) {
+  PublishModel.find(
+    (err, messages) => {
+      console.log(messages)
+      res.json(messages)
+    }
+  );
+});
+
 
 
 

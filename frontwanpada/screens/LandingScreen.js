@@ -100,7 +100,7 @@ class LandingScreen extends React.Component {
 
       if(data == false) {
         this.setState({msgErr: 'Mince il y a des erreurs au niveau des champs', notConnected: true})
-        
+
       } else {
         if(data._id){
           display = true;

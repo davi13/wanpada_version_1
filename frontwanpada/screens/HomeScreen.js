@@ -24,14 +24,14 @@ class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      usersList: [],
+      messagesList: [],
     }
     this.getAllUsers();
   }
 
   getAllUsers() {
     self = this
-    fetch(URL.urlApp+'/users',
+    fetch(URL.urlApp+'/messages',
       {
         method: 'GET',
         headers: {
@@ -43,7 +43,7 @@ class HomeScreen extends Component {
     .then((response) => { return response.json() })
     .then((data) => {
       // console.log(data);
-      this.setState({ usersList: data})
+      this.setState({ messagesList: data})
     })
   }
 
@@ -51,10 +51,10 @@ class HomeScreen extends Component {
 
   render() {
     console.log("hello ceci est un test!!")
-    var user = this.props.user
+    var messages = this.props.messages
     // console.log(user)
     // console.log(this.props.user)
-    const userItem = this.state.usersList.map((item, index) => <CardHome key={index} nom={item.nom} prenom={item.prenom} />);
+    const messagesItem = this.state.messagesList.map((item, index) => <CardHome key={index} nom={item.nom} prenom={item.prenom} />);
 
     return (
       <ImageBackground style={{flex: 1}} source={require("../assets/images/backgroundofficial.jpg")}>
@@ -63,7 +63,7 @@ class HomeScreen extends Component {
         <View style={styles.container}>
           <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
 
-            { userItem }
+            { messagesItem }
             <ModalHome />
 
           </ScrollView>
