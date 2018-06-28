@@ -12,11 +12,12 @@ import display from './reducer/display.reducer';
 import user from './reducer/user.reducer';
 import followings from './reducer/favoris.reducer'
 import modal from './reducer/modalpublish.reducer'
+import messages from './reducer/messages.reducer'
 
 import Display from './components/display'
 
 
-var globalReducers= combineReducers({ form: formReducer, isVisible, user, display, followings, modal });
+var globalReducers= combineReducers({ form: formReducer, isVisible, user, display, followings, modal, messages });
 
 const store = createStore(globalReducers);
 

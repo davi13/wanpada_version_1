@@ -36,13 +36,13 @@ var userSchema = mongoose.Schema({
   favory: { type: Array, required: false }
 });
 
-var publishSchema = mongoose.Schema({
-  user_id: String,
-  date: { type: Date, default: Date.now },
-  nbOfLikes: Number,
-  comments: [{ body: String, date: Date }],
-  messages: String
-});
+// var publishSchema = mongoose.Schema({
+//   user_id: String,
+//   date: { type: Date, default: Date.now },
+//   nbOfLikes: Number,
+//   comments: [{ body: String, date: Date }],
+//   messages: String
+// });
 
           // MODELS IN MONGOOSE //
 var UserModel = mongoose.model('users', userSchema);
@@ -132,7 +132,7 @@ var publishSchema = mongoose.Schema({
   date: String,
   nbOfLikes: String,
   comments: String,
-  message: String
+  username: String
 });
 
 var PublishModel = mongoose.model('publications', publishSchema);
@@ -144,7 +144,7 @@ router.post('/newmessage', function(req, res, next) {
     date: req.body.date,
     nbOfLikes: req.body.nbOfLikes,
     comments: req.body.comments,
-    message: req.body.messages
+    username: req.body.username,
   })
   newMessage.save(function(error, newMessage ) {
     console.log(newMessage);
@@ -152,6 +152,24 @@ router.post('/newmessage', function(req, res, next) {
   })
 });
 
+
+// ESSAI NUMERO 1
+// router.get('/messages', function(req, res, next) {
+//   PublishModel.find(
+//     (err, messages) => {
+//       UserModel.find(
+//           {_id: messages[0].userid},
+//         (err, users) => {
+//           let datas = [...messages, users];
+//           console.log(datas);
+//           res.json(datas)
+//         }
+//       )
+//     }
+//   );
+// });
+
+// ESSAI NUMERO 2
 router.get('/messages', function(req, res, next) {
   PublishModel.find(
     (err, messages) => {
@@ -160,10 +178,6 @@ router.get('/messages', function(req, res, next) {
     }
   );
 });
-
-
-
-
 
 
 
@@ -203,31 +217,31 @@ router.post('/update', function(req, res, next) {
 
 /*************************FIN USER UPDATE**********************************/
 
-var MessageSchema = mongoose.Schema({
-    conversationId: String,
-    sendingUserId: String,
-    sendingUsername: String,
-    receivingUserId: String,
-    receivingUsername: String,
-    message: String,
-});
+// var MessageSchema = mongoose.Schema({
+//     conversationId: String,
+//     sendingUserId: String,
+//     sendingUsername: String,
+//     receivingUserId: String,
+//     receivingUsername: String,
+//     message: String,
+// });
+//
+// var MessageModel = mongoose.model('messages', MessageSchema);
 
-var MessageModel = mongoose.model('messages', MessageSchema);
 
-
-router.post('/sendmessage', function(req, res, next) {
-  var newMessage = new MessageModel({
-    conversationId: req.body.conversationId,
-    sendingUserId: req.body.sendingUserId,
-    sendingUsername: req.body.sendingUsername,
-    receivingUserId: req.body.receivingUsername,
-    receivingUsername: req.body.receivingUsername,
-    message: req.body.message,
-  })
-  newMessage.save(function(error, message) {
-    res.json(message);
-  })
-});
+// router.post('/sendmessage', function(req, res, next) {
+//   var newMessage = new MessageModel({
+//     conversationId: req.body.conversationId,
+//     sendingUserId: req.body.sendingUserId,
+//     sendingUsername: req.body.sendingUsername,
+//     receivingUserId: req.body.receivingUsername,
+//     receivingUsername: req.body.receivingUsername,
+//     message: req.body.message,
+//   })
+//   newMessage.save(function(error, message) {
+//     res.json(message);
+//   })
+// });
 
 
 /****** start router search*******/

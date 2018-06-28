@@ -20,7 +20,7 @@ import { Icon } from 'react-native-elements';
 class ExitModalPublish extends React.Component {
   constructor() {
     super();
-    
+
   }
   static navigationOptions = {
     header: null
@@ -30,12 +30,12 @@ class ExitModalPublish extends React.Component {
     var modal = false;
     return (
     <View style={{position: 'absolute', top: -20, right: -30}}>
-        <Icon
-            raised
-            name='ios-close'
-            type='ionicon'
-            color='#00A6FB'
-            onPress={() => this.props.exitModalPublish(modal)}
+      <Icon
+        raised
+        name='ios-close'
+        type='ionicon'
+        color='#00A6FB'
+        onPress={() => this.props.exitModalPublish(modal)}
         />
     </View>
     );

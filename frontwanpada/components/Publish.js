@@ -25,10 +25,13 @@ import {MonoText} from '../components/StyledText';
 
 import PublishReduxForm from './PublishReduxForm';
 
+
+import URL from '../constants/Connect'
+
 class Publish extends React.Component {
-  constructor() {
-    super();
-    // this.handleSubmit = this.handleSubmit.bind(this);
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
     // this.state = {
     //   modalVisible: false
     // }
@@ -37,29 +40,42 @@ class Publish extends React.Component {
     header: null
   };
 
+
   // setModalVisible(visible) {
   //    this.setState({modalVisible: visible});
   //  }
 
 
+
+
    handleSubmit(values){
-     console.log("initiation du fetch")
+     console.log("JE VEUX RECUPERER LES VALUES")
      console.log(values)
 
+
+
      var ctx = this;
-     fetch('http://10.2.1.197:3000/newmessage', {
+
+     var modal = false;
+
+     fetch(URL.urlApp+'/newmessage', {
              method: 'POST',
              headers: {'Content-Type':'application/x-www-form-urlencoded'},
-             body: 'userid='+values.message+'&date='+values.message+'&nbOfLikes='+values.message+'&comments='+values.message+'&message='+values.message
+             body: 'userid='+this.props.user._id+'&date='+values.message+'&nbOfLikes='+values.message+'&comments='+values.message+'&message='+values.message+'&username='+this.props.user.nom
            }).then(function(response) {
              console.log("CONNECTÉ AU BACKEND")
-             console.log(response)
+             // console.log(response)
              return response.json();
 
              })
              .then(function(data) {
-                 console.log("VOICI LES DATAS RETOURNÉS PAR LE BACKEND")
+                 console.log("JE VEUX RECUPERER LA STRUCTRE BDD DE MON MESSAGE")
                  console.log(data);
+
+                 ctx.props.onSendMessageClick(data._id, data.comments, data.date, data.nbOfLikes, data.userid, data.username)
+
+                 ctx.props.setModalInvisible(modal)
+
              }).catch(function(error) {
                  console.log('Request failed', error)
              });
@@ -71,16 +87,19 @@ class Publish extends React.Component {
 
 
   render() {
+    console.log("hello daviel!!!!")
+
+    console.log(this.props.user._id)
 
     var modal = false
 
     // if (Platform.OS === 'ios') {
 
       return (
-        
+
         <View>
 
-           {/*ICON POUR PUBLIER*/}
+          {/*ICON POUR PUBLIER*/}
           <Ionicons
             name="ios-paper-plane" size={30}
             color='#D8D8D8'
@@ -127,19 +146,23 @@ class Publish extends React.Component {
 
 
 
+
 function mapDispatchToProps(dispatch){
   return {
-    onSendMessageClick: function(message) {
-      dispatch( {type: 'newmessage', message })
+    onSendMessageClick: function(messageid, message, date_at, likes, userid, username) {
+      dispatch( {type: 'newmessage', messageid, message, date_at, likes, userid, username })
+    },
+    setModalInvisible: function(modal) {
+      dispatch( {type: 'exitmodal', modal} )
     },
     setModalVisible: function(modal) {
       dispatch( {type: 'openmodal', modal })
-    }
+    },
   }
 }
 
 function mapStateToProps(state) {
-  return { modal: state.modal}
+  return { modal: state.modal, user: state.user, messages: state.messages}
 }
 
 
@@ -160,5 +183,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Publish);
-
-

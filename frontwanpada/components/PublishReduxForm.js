@@ -80,7 +80,7 @@ class PublishReduxForm extends React.Component {
 
 
   render() {
-    return ( 
+    return (
       <View style={{marginTop: 22}}>
         <View>
           <View style={{alignItems: 'center'}}>

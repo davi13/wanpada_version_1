@@ -52,7 +52,7 @@ class CardHome extends Component {
         <View style={{flex: 1, flexDirection: 'row'}}>
           <Image style={{borderRadius: 30, height: 60, width: 60, marginLeft:10, marginTop:10, marginRight: 20}}
             source={require("../../../assets/images/avatar-1.jpg")} />
-          <Text h1 style={styles.title_profile}> {this.props.nom} {this.props.prenom} </Text>
+          <Text h1 style={styles.title_profile}> {this.props.name}  </Text>
 
           <View style={styles.icons}>
 
@@ -73,7 +73,7 @@ class CardHome extends Component {
 
           </View>
         </View>
-        <Text h3 style={styles.text_profile}> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vulputate, libero non tempor efficitur, neque nulla venenatis eros.</Text>
+        <Text h3 style={styles.text_profile}> {this.props.msg}</Text>
       </View>
     );
   }

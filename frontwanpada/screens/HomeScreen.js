@@ -26,10 +26,10 @@ class HomeScreen extends Component {
     this.state = {
       messagesList: [],
     }
-    this.getAllUsers();
+    this.getAllMessages();
   }
 
-  getAllUsers() {
+  getAllMessages() {
     self = this
     fetch(URL.urlApp+'/messages',
       {
@@ -40,21 +40,29 @@ class HomeScreen extends Component {
         }
       }
     )
-    .then((response) => { return response.json() })
+    .then((response) => { return response.json();
+     })
     .then((data) => {
+      // this.setState({messagesList: data})
       // console.log(data);
-      this.setState({ messagesList: data})
+      self.props.getAllMessages(data)
+
+
+
     })
   }
 
 
 
   render() {
-    console.log("hello ceci est un test!!")
-    var messages = this.props.messages
+    console.log("ICI EST LE PREMIER LOGGGGG")
+    var messagesList = this.props.messages
+
+    console.log("ICI EST LE DEUXIEME LOGGGGG")
+    console.log(messagesList)
     // console.log(user)
     // console.log(this.props.user)
-    const messagesItem = this.state.messagesList.map((item, index) => <CardHome key={index} nom={item.nom} prenom={item.prenom} />);
+    const messagesItem = messagesList.map((item, index) => <CardHome key={index} msg={item.comments} name={item.username}/>);
 
     return (
       <ImageBackground style={{flex: 1}} source={require("../assets/images/backgroundofficial.jpg")}>
@@ -74,11 +82,17 @@ class HomeScreen extends Component {
 }
 
 function mapStateToProps(state) {
-    return { display: state.display, user: state.user }
+    return { display: state.display, user: state.user, messages: state.messages }
 }
 
 
-
+function mapDispatchToProps(dispatch){
+  return {
+    getAllMessages: function(messages) {
+      dispatch( {type: 'getall', messages} )
+    }
+  }
+}
 
 
 
@@ -86,7 +100,7 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(HomeScreen);
 
 const styles = StyleSheet.create({
