@@ -25,6 +25,8 @@ import {MonoText} from '../components/StyledText';
 
 import { reduxForm, Field } from "redux-form";
 
+import ExitModalPublish from "./exitModalpublish";
+
 
 function messageInput(props) {
   const { input } = props;
@@ -61,101 +63,61 @@ class PublishReduxForm extends React.Component {
     super();
 
     this.state = {
-      isVisible: false,
+      /*isVisible: false,
       signUp: false,
       signIn: false,
-      modalVisible: false
+      modalVisible: false*/
     }
   }
   static navigationOptions = {
     header: null
   };
 
-  setModalVisible(visible) {
+  /*setModalVisible(visible) {
      this.setState({modalVisible: visible});
-   }
+   }*/
 
-
-handleClick(){
-  alert("ceci est un test !!")
-}
 
 
   render() {
-
-
-      return (
-
+    return ( 
+      <View style={{marginTop: 22}}>
         <View>
+          <View style={{alignItems: 'center'}}>
+            <Overlay style={{margin: 'auto', marginTop: 0, backgroundColor: 'transparent'}} isVisible>
+              {/* VIEW POUR METTRE EN FORME LE HAUT DE PAGE*/}
+              <View style={{flexDirection: 'row'}}>
+                <Text H1 style={{fontSize: 25, color: '#00A6FB',
+                fontWeight: 'bold', marginBottom: 50, marginLeft: 'auto', marginRight: 'auto'}}> Publier </Text>
 
-          <View>
-
-            <View style={{marginTop: 22}}>
-              <View>
-
-                <View style={{alignItems: 'center'}}>
-
-                  <Overlay style={{margin: 'auto', marginTop: 0, backgroundColor: 'transparent'}} isVisible>
-
-                    // VIEW POUR METTRE EN FORME LE HAUT DE PAGE
-                    <View style={{flexDirection: 'row'}}>
-                      <Text H1 style={{fontSize: 25, color: '#00A6FB',
-                      fontWeight: 'bold', marginBottom: 50, marginLeft: 'auto', marginRight: 'auto'}}> Publier </Text>
-
-                      // BOUTTON EXIT DU MODAL // NON FONCTIONNEL POUR LE MOMENT
-                      <Ionicons
-                        style={{position:'relative', right:-20, top: -20}}
-                        name="ios-close" size={40}  color='#D8D8D8'
-                        onPress={() => this.handleClick()}
-                      />
-                    </View>
-
-
-
-                    // FIELD POUR RECEVOIR LE COMPOSANT DE LA FONCTION REDUX FORM PLUS HAUT SUR CETTE PAGE
-                    <Field
-                      name="message"
-                      component={messageInput}
-                    />
-
-
-                    // BUTTON POUR ENVOYER AVEC REDUX FORM
-                    <Button
-                      title='Envoyer'
-                      loading={false}
-                      loadingProps={{ size: 'small', color: 'white' }}
-                      buttonStyle={{ borderRadius: 5, marginTop: 20, marginBottom: 20, width: 100, marginLeft: 'auto', marginRight: 'auto', backgroundColor: '#00A6FB' }}
-                      textStyle={{ fontWeight: 'bold', fontSize: 23 }}
-                      onPress={this.props.handleSubmit}
-                      underlayColor="transparent"
-                    />
-
-
-                  </Overlay>
-                </View>
-
+                {/*BOUTTON EXIT DU MODAL NON FONCTIONNEL POUR LE MOMENT*/}
+                <ExitModalPublish/>
               </View>
-            </View>
-
+              {/* FIELD POUR RECEVOIR LE COMPOSANT DE LA FONCTION REDUX FORM PLUS HAUT SUR CETTE PAGE*/}
+              <Field
+                name="message"
+                component={messageInput}
+              />
+              {/* BUTTON POUR ENVOYER AVEC REDUX FORM*/}
+              <Button
+                title='Envoyer'
+                loading={false}
+                loadingProps={{ size: 'small', color: 'white' }}
+                buttonStyle={{ borderRadius: 5, marginTop: 20, marginBottom: 20, width: 100, marginLeft: 'auto', marginRight: 'auto', backgroundColor: '#00A6FB' }}
+                textStyle={{ fontWeight: 'bold', fontSize: 23 }}
+                onPress={this.props.handleSubmit}
+                underlayColor="transparent"
+              />
+            </Overlay>
           </View>
-
         </View>
-
-
-
-      );
+      </View>
+    );
   }
 }
 
 
-function mapDispatchToProps(dispatch) {
-  return {
-    powerOff: function(display) {
-      console.log("depuis le composant poweroff : click!")
-      dispatch({type: 'poweroff', display});
-    }
-  }
-}
+
 
 
 const comment_part = StyleSheet.create({

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Input, Button, Overlay, ListItem, Rating  } from 'react-native-elements';
+import { Header, Input, Button, Overlay, ListItem, Rating, Icon  } from 'react-native-elements';
 import {
   Modal,Image,
   Platform,
@@ -12,13 +12,11 @@ import {
 } from 'react-native';
 import {WebBrowser} from 'expo';
 import {Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
-
 import {connect} from 'react-redux';
-
 import UserUpdate from './form/UserUpdate';
 import URL from '../../constants/Connect';
 
-import URL from '../../constants/Connect'
+
 
 
 
@@ -28,18 +26,20 @@ class Profile extends React.Component {
     super();
     this.state = {visible : false,  isVisible: false, update: false }
     this.onSubmitUserUpdate = this.onSubmitUserUpdate.bind(this);
+    this.returnHome = this.returnHome.bind(this);
   }
 
   static navigationOptions = {
     header: null
   };
+  returnHome(){
+    this.setState({isVisible: false})
+  }
 
   onSubmitUserUpdate(values) {
     newUpdate = false;
-    console.log("ici on va tester la value")
-    console.log(values.Nom)
 
-    this.setState({ isVisible: false })
+    this.setState({ isVisible: false });
     ctx = this;
     //10.2.1.38
     //192.168.1.13
@@ -52,17 +52,13 @@ class Profile extends React.Component {
 
     .then((data) => {
 
-      console.log("le fetch de l'update fonctionne jusqu'ici, MAGGLE!")
-
-      console.log("ici on met a jour le state avec les new infos")
-
       // ctx.setState({update: true})
 
       // var changeState =  this.state.update
 
       // if(this.state.update){
 
-      //   console.log("test depuis profile......")
+
 
         ctx.props.onUpdateClick(values.Nom, values.Prenom, values.Email, values.Password, values.Ville, values.Company, values.University)
       // }
@@ -76,9 +72,9 @@ class Profile extends React.Component {
 
 
   render(){
-    console.log('ici en bas la reponse state profile');
-    console.log(this.props.user);
-
+    
+    console.log('ici en bas la reponse PROPS profile');
+   //console.log(this.props.user);
     var displayProfile = this.props.profile;
     var colorHeart = {};
 
@@ -87,7 +83,7 @@ class Profile extends React.Component {
       colorHeart = { color: "red", }
     }
 
-      console.log(this.state.isVisible);
+
 
 
       return(
@@ -111,7 +107,15 @@ class Profile extends React.Component {
         <Modal animationType='slide' transparent={false}  visible={this.state.isVisible}>
           <Overlay fullScreen={true} isVisible={this.state.isVisible}>
             <View style={{flex:1,justifyContent: 'center',alignItems: 'center' }}>
-
+            <View style={{display: 'flex', position: 'absolute', top: 10, right: 10}}>
+              <Icon
+                raised
+                name='ios-close'
+                type='ionicon'
+                color='#00A6FB'
+                onPress={this.returnHome}
+              />
+              </View>
               <UserUpdate onSubmit={this.onSubmitUserUpdate} />
 
             </View>
@@ -120,7 +124,7 @@ class Profile extends React.Component {
 
         <Text h1 style={profile.title_profile}>{this.props.user.nom}</Text>
         <Text h2 style={profile.text_profile}> {this.props.user.company}</Text>
-        <Text h2 style={profile.text_profile}>{this.props.user.university}</Text>
+      <Text h2 style={profile.text_profile}>{this.props.user.university}</Text>
 
         <View style={{display: 'flex', flexDirection: 'row', marginTop:10}}>
 

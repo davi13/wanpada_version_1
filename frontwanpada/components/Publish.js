@@ -29,20 +29,17 @@ class Publish extends React.Component {
   constructor() {
     super();
     // this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {
-      isVisible: false,
-      signUp: false,
-      signIn: false,
-      modalVisible: false
-    }
+    // this.state = {
+    //   modalVisible: false
+    // }
   }
   static navigationOptions = {
     header: null
   };
 
-  setModalVisible(visible) {
-     this.setState({modalVisible: visible});
-   }
+  // setModalVisible(visible) {
+  //    this.setState({modalVisible: visible});
+  //  }
 
 
    handleSubmit(values){
@@ -75,27 +72,29 @@ class Publish extends React.Component {
 
   render() {
 
+    var modal = false
+
     // if (Platform.OS === 'ios') {
 
       return (
-
+        
         <View>
 
-          // ICON POUR PUBLIER
+           {/*ICON POUR PUBLIER*/}
           <Ionicons
             name="ios-paper-plane" size={30}
             color='#D8D8D8'
             style={{marginRight: 10, marginBottom: 2}}
             underlayColor="transparent"
-            onPress={() => this.setModalVisible(true) }/>
+            onPress={() => this.props.setModalVisible(modal) }/>
 
 
-          // MODAL DE LA PUBLICATION
+          {/* MODAL DE LA PUBLICATION*/}
           <View>
             <Modal
               animationType="slide"
               transparent={false}
-              visible={this.state.modalVisible}
+              visible={this.props.modal}
               onRequestClose={() => {
                 alert('Modal has been closed.');
               }}>
@@ -132,11 +131,16 @@ function mapDispatchToProps(dispatch){
   return {
     onSendMessageClick: function(message) {
       dispatch( {type: 'newmessage', message })
+    },
+    setModalVisible: function(modal) {
+      dispatch( {type: 'openmodal', modal })
     }
   }
 }
 
-
+function mapStateToProps(state) {
+  return { modal: state.modal}
+}
 
 
 
@@ -151,7 +155,10 @@ const comment_part = StyleSheet.create({
  }
 })
 
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Publish);
+
+

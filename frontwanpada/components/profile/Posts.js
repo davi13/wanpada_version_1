@@ -103,10 +103,9 @@ class Posts extends React.Component {
 
 
   render() {
-    console.log("HOLALALAL")
 
     var displayPost = this.props.posts;
-console.log('+++++++++++++++++++>'+displayPost)
+
 
     //// CONDITION POUR DEROULER LES AVIS///
     var copylistAvis= this.state.listAvis.concat()

@@ -102,11 +102,15 @@ class LandingScreen extends React.Component {
         this.setState({msgErr: 'Mince il y a des erreurs au niveau des champs', notConnected: true})
         
       } else {
+        if(data._id){
           display = true;
           ctx.props.onSigninClick(data, display);
         }
+        else {
+          ctx.props.onSigninClick(data, display);
+        }
         console.log("LE BIG TEST DE GILLES!");
-        // console.log(data);
+        }
     })
     .catch(function(error) {
       console.log('Request failed', error)
