@@ -35,70 +35,70 @@ class Posts extends React.Component {
       seePosts:'',
       listAvis:[
         <ListItem
-        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' } }}
+        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
 
-        title="Marie S."
-        subtitle="Super Padawan ! "
+        title="Richard"
+        subtitle="Super Conseiller ! Je recommande il m'a aidé a devenir développeur "
         />,
         <ListItem
         leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
-        title="Sophiane A."
+        title="Francois"
         subtitle="Merci pour tous ces conseils ! "
         />,
         <ListItem
         leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
-        title="Daviel A."
-        subtitle="Merci, je recommande ! "
+        title="Abdel"
+        subtitle="Merci, Daviel ! T'es le meilleur ! "
         />,
         <ListItem
-        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' } }}
+        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
 
-        title="Marie S."
+        title="Gillou"
         subtitle="A refaire ! "
         />,
         <ListItem
         leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
-        title="Sophiane A."
+        title="Victor"
         subtitle="Merci ! "
         />,
         <ListItem
-        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
-        title="Daviel A."
+        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' } }}
+        title="Flora"
         subtitle="Merci, je recommanderais à tous mes amis! "
         />
       ],
       listPosts:[
         <ListItem
-        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' } }}
+        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
 
-        title="Marie S."
-        subtitle="Super Padawan ! "
+        title="Daviel"
+        subtitle="Super, j'ai donné mon premier conseil ! "
         />,
         <ListItem
         leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
-        title="Sophiane A."
-        subtitle="Merci pour tous ces conseils ! "
+        title="Daviel"
+        subtitle="Je reviens de République Dominicaine je suis ko, j'ai trop dansé de bachata ! "
         />,
         <ListItem
         leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
-        title="Daviel A."
-        subtitle="Merci, je recommande ! "
+        title="Daviel"
+        subtitle="Mon troisième enfant est né ce matin ! Merci pour vos messages"
         />,
         <ListItem
-        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' } }}
+        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
 
-        title="Marie S."
-        subtitle="A refaire ! "
+        title="Daviel"
+        subtitle="La capsule est enfin fini ! J'en pouvais plus de voir les Alexis tous les jours"
         />,
         <ListItem
         leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
-        title="Sophiane A."
-        subtitle="Merci ! "
+        title="Daviel"
+        subtitle="Les Alexis vont me manquer =( ainsi que Gillou "
         />,
         <ListItem
         leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
-        title="Daviel A."
-        subtitle="Merci, je recommanderais à tous mes amis! "
+        title="Daviel"
+        subtitle=" Git et Redux Grrrrr ! @$#% !!!! "
         />
       ]
     };
@@ -177,7 +177,7 @@ class Posts extends React.Component {
 
         <View>
           <View style={{borderBottomWidth: 0.5, borderColor: '#D8D8D8', marginBottom:5}}>
-              <Text h2 style={profile.profile_title}> Mes avis </Text>
+              <Text h2 style={profile.profile_title}> Mes publications </Text>
 
 
               <ScrollView>
@@ -204,7 +204,7 @@ class Posts extends React.Component {
 
               </ScrollView>
             </View>
-            <Text h2 style={profile.profile_title}> Mes publications </Text>
+            <Text h2 style={profile.profile_title}> Mes avis </Text>
 
             <ScrollView>
 

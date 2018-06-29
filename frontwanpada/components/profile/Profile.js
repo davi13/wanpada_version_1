@@ -101,7 +101,6 @@ class Profile extends React.Component {
 
         <View style={{position: 'absolute', top: 20, left: 0}}>
 
-          <MaterialCommunityIcons name="account-edit" size={32} style={colorHeart}
 
             onPress={() => this.setState({isVisible: true })} />
         </View>
