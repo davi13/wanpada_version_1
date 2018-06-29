@@ -17,7 +17,7 @@ import {connect} from 'react-redux';
 
 
 
-class Posts extends React.Component {
+class Posts_user extends React.Component {
   constructor(props) {
     super(props);
 
@@ -31,40 +31,36 @@ class Posts extends React.Component {
       listAvis:[
         <ListItem
         key={1}
-        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' } }}
+        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
 
-        title="Marie S."
-        subtitle="Super Padawan ! "
+
+        subtitle="Super journée ! "
         />,
         <ListItem
         key={2}
         leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
-        title="Sophiane A."
-        subtitle="Merci pour tous ces conseils ! "
+        subtitle="Nouveau Job ! "
         />,
         <ListItem
         key={3}
         leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
-        title="Daviel A."
-        subtitle="Merci, je recommande ! "
+        subtitle="Merci, pour vos messages ! "
         />,
         <ListItem
         key={4}
-        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' } }}
-        title="Marie S."
-        subtitle="A refaire ! "
+        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
+        subtitle="Super conférence ! "
         />,
         <ListItem
         key={5}
           leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
-          title="Sophiane A."
-          subtitle="Merci ! "
+          subtitle="Merci pour cette journée d'accueil ! "
         />,
         <ListItem
         key={6}
-          leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
-        title="Daviel A."
-        subtitle="Merci, je recommanderais à tous mes amis! "
+         
+        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
+        subtitle="Début des vacances !! "
         />
       ],
       listPosts:[
@@ -187,7 +183,7 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(null, mapDispatchToProps,)(Posts);
+export default connect(null, mapDispatchToProps,)(Posts_user);
 
 
 const profile = StyleSheet.create({

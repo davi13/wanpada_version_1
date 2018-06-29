@@ -37,6 +37,9 @@ class CardHome extends Component {
     }
   }
 
+  ShowProfilUser() {
+    this.props.ParentShowProfilUser(this.props.id)
+  }
 
   render() {
     var colorHeart = {};
@@ -52,7 +55,7 @@ class CardHome extends Component {
         <View style={{flex: 1, flexDirection: 'row'}}>
           <Image style={{borderRadius: 30, height: 60, width: 60, marginLeft:10, marginTop:10, marginRight: 20}}
             source={require("../../../assets/images/avatar-1.jpg")} />
-          <Text h1 style={styles.title_profile}> {this.props.name}  </Text>
+          <Text h1 style={styles.title_profile} onPress={() => this.ShowProfilUser()}> {this.props.name}  </Text>
 
           <View style={styles.icons}>
 

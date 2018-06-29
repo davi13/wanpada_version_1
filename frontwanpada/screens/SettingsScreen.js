@@ -241,7 +241,10 @@ class SettingsScreen extends React.Component {
 
   constructor() {
     super();
-    this.state = {maps: false  }
+    this.state = {maps: false  };
+    this.handleClickMaps = this.handleClickMaps.bind(this);
+    this.handleClickClose = this.handleClickClose.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClickMaps= ()=> {

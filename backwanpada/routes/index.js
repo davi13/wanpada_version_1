@@ -57,6 +57,26 @@ router.get('/users', function(req, res, next) {
   );
 });
 
+router.post('/profiluser',
+  (req, res) => {
+    console.log(req.body.id)
+    UserModel.find(
+      {_id: req.body.id},
+      (err, users) => {
+        PublishModel.find(
+          {userid: req.body.id},
+            (err, messages) => {
+              let userContent = messages.concat(users);
+              console.log(err)
+              console.log(userContent)
+              res.json(userContent);
+            }
+        );
+      }
+    )
+  }
+)
+
 router.post('/favoris', function(req, res, next) {
 
   UserModel.update(
