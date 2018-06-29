@@ -35,12 +35,7 @@ class Posts extends React.Component {
       seePosts:'',
       listAvis:[
         <ListItem
-<<<<<<< HEAD
-        key={1}
-        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' } }}
-=======
         leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
->>>>>>> c819300dbd81bca4a1b216c9cc9378008e469dad
 
         title="Richard"
         subtitle="Super Conseiller ! Je recommande il m'a aidé a devenir développeur "
@@ -58,23 +53,6 @@ class Posts extends React.Component {
         subtitle="Merci, Daviel ! T'es le meilleur ! "
         />,
         <ListItem
-<<<<<<< HEAD
-        key={4}
-        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' } }}
-        title="Marie S."
-        subtitle="A refaire ! "
-        />,
-        <ListItem
-        key={5}
-          leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
-          title="Sophiane A."
-          subtitle="Merci ! "
-        />,
-        <ListItem
-        key={6}
-          leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
-        title="Daviel A."
-=======
         leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
 
         title="Gillou"
@@ -88,18 +66,12 @@ class Posts extends React.Component {
         <ListItem
         leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' } }}
         title="Flora"
->>>>>>> c819300dbd81bca4a1b216c9cc9378008e469dad
         subtitle="Merci, je recommanderais à tous mes amis! "
         />
       ],
       listPosts:[
         <ListItem
-<<<<<<< HEAD
-        key={7}
-        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' } }}
-=======
         leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
->>>>>>> c819300dbd81bca4a1b216c9cc9378008e469dad
 
         title="Daviel"
         subtitle="Super, j'ai donné mon premier conseil ! "
@@ -117,12 +89,7 @@ class Posts extends React.Component {
         subtitle="Mon troisième enfant est né ce matin ! Merci pour vos messages"
         />,
         <ListItem
-<<<<<<< HEAD
-        key={10}
-        leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' } }}
-=======
         leftAvatar={{ source: { uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' } }}
->>>>>>> c819300dbd81bca4a1b216c9cc9378008e469dad
 
         title="Daviel"
         subtitle="La capsule est enfin fini ! J'en pouvais plus de voir les Alexis tous les jours"
