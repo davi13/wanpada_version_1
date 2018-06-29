@@ -55,7 +55,7 @@ export default class SearchScreen extends React.Component {
   render() {
 
     var users = this.state.users.map((user, i) => {
-      var i = 0;
+      // var i = 0;
       return (
         <CardSearch key={i} name={user.nom} comp={user.competences} id={user._id} />
       )

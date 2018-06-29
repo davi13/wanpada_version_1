@@ -9,11 +9,12 @@ import { styles } from './style'
 function textInput(props) {
   const { input } = props;
   return (
+
     <Input
       onChangeText={input.onChange}
       value={input.value}
       underlineColorAndroid={'transparent'}
-      placeholder='Recherche ....'
+      placeholder='Recherche '
     />
   );
 }
@@ -29,17 +30,19 @@ class BarSearch extends Component {
   render() {
     return(
       <View style={ styles.containerBar }>
+      <Icon
+      style={{marginTop:5, marginRight:5}}
+       name='search'
+       size={22}
+       color='white'
+       onPress={this.props.handleSubmit}
+      />
         <Field
           name="search"
           component={textInput}
         />
 
-        <Icon
-         name='search'
-         size={24}
-         color='white'
-         onPress={this.props.handleSubmit}
-        />
+
       </View>
     );
   }

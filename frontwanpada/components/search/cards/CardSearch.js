@@ -59,14 +59,14 @@ class CardSearch extends React.Component {
               </View>
             </View>
           </View>
-          <View style={{position: 'absolute', top: 20, right: 15}}>
+          {/* <View style={{position: 'absolute', top: 20, right: 15}}>
 
             <Badge containerStyle={styles.dist_profile}
               value={this.props.dist}
               textStyle={{ color: 'white' }}
             />
 
-          </View>
+          </View> */}
         </View>
 
         <View style={{ marginTop: 10, marginLeft: 10, marginRight: 10, flexDirection: 'row'}}>
@@ -75,21 +75,21 @@ class CardSearch extends React.Component {
             marginRight: 10,
             height: 20,
           borderRadius: 8}}>
-            <Text style={styles.text}>Competences</Text>
+            <Text style={styles.text_profile}>Competences</Text>
           </Badge>
           <Badge containerStyle={{   width: 100,
             backgroundColor: '#00A6FB',
             marginRight: 10,
             height: 20,
           borderRadius: 8}}>
-            <Text style={styles.text}>Compétences</Text>
+          <Text style={styles.text_profile}>Competences</Text>
           </Badge>
           <Badge containerStyle={{   width: 100,
             backgroundColor: '#00A6FB',
             marginRight: 10,
             height: 20,
           borderRadius: 8}}>
-            <Text style={styles.text}>Competences</Text>
+          <Text style={styles.text_profile}>Competences</Text>
           </Badge>
         </View>
 

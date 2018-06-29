@@ -24,7 +24,8 @@ class Profile extends React.Component {
 
   constructor() {
     super();
-    this.state = {visible : false,  isVisible: false, update: false }
+    this.state = {visible : false,  isVisible: false, update: false
+     }
     this.onSubmitUserUpdate = this.onSubmitUserUpdate.bind(this);
     this.returnHome = this.returnHome.bind(this);
   }
@@ -71,8 +72,9 @@ class Profile extends React.Component {
 
 
 
+
   render(){
-    
+
     console.log('ici en bas la reponse PROPS profile');
    //console.log(this.props.user);
     var displayProfile = this.props.profile;
@@ -116,7 +118,7 @@ class Profile extends React.Component {
                 onPress={this.returnHome}
               />
               </View>
-              <UserUpdate onSubmit={this.onSubmitUserUpdate} />
+              <UserUpdate onSubmit={this.onSubmitUserUpdate} user={this.props.user}/>
 
             </View>
           </Overlay>
