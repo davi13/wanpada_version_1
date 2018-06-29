@@ -46,7 +46,7 @@ export default class Chat extends Component {
       messages: GiftedChat.append(previousState.messages, [{ ...messages[0], sent: true, received: true }]),
       step,
     }));
-    setTimeout(() => this.botSend(step), 1200 + Math.round(Math.random() * 1000));
+    setTimeout(() => this.botSend(step), 12000 + Math.round(Math.random() * 1000));
   }
 
   botSend(step = 0) {
