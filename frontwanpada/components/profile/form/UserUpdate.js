@@ -2,6 +2,7 @@ import React from 'react';
 import { View , TextInput, Text} from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import { reduxForm, Field } from "redux-form";
+import {connect} from 'react-redux';
 
 
 
@@ -37,7 +38,25 @@ class UserUpdate extends React.Component {
     constructor(props) {
         super(props);
     }
+
+    componentWillMount () {
+      console.log('coicoidojscoijc   ovosdjosdjvsoijo odjfoid');
+      let User = this.props.user
+      this.props.initialize({
+        Nom: User.nom,
+        Prenom: User.prenom,
+        Email: User.email,
+        Pasword: User.password,
+        Ville: User.ville,
+        Company: User.company,
+        University: User.university
+      }
+      )}
+
+
+
   render() {
+
     return (
       <View >
 

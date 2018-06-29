@@ -25,8 +25,13 @@ export const styles = StyleSheet.create({
     borderRadius: 10
   },
   title_profile: {
-    marginTop: 15,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    marginLeft:'auto',
+    marginRight:'auto',
+    marginTop:15,
+    fontSize: 20,
+    color: '#00A6FB',
+    fontWeight: 'bold',
   },
   fontTitle: {
     fontSize: 20,
@@ -45,4 +50,11 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 6
   },
+  text_profile:{
+    fontSize: 12,
+    margin: 'auto',
+    color: '#fff',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  }
 });

@@ -14,17 +14,19 @@ class BarSearch extends Component {
 
   render() {
     return(
+      <View style={{width: 250, marginLeft:100}}>
+      <Icon
+        name='search'
+        size={24}
+        color='white'
+      />
       <Input
       style={{width:100}}
         placeholder='Rechercher'
         leftIcon={
-         <Icon
-           name='search'
-           size={24}
-           color='white'
-         />
        }
       />
+      </View>
     );
   }
 }

@@ -253,12 +253,12 @@ SettingsStack.navigationOptions = {
        borderTopColor: '#0D122F',
      },
    },
-  tabBarLabel: 'Settings',
+  tabBarLabel: 'Profil',
   tabBarIcon: ({ style={ color: focused ? 'black' : 'black'}, focused }) => (
     <TabBarIcon
 
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-settings${focused ? '' : '-outline'}` : 'md-settings'}
+      name={Platform.OS === 'ios' ? `ios-people${focused ? '' : '-outline'}` : 'md-people'}
     />
   ),
 };

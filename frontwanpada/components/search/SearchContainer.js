@@ -22,7 +22,7 @@ class SearchScreen extends Component {
     })
     .then((data) => {
       console.log(data);
-      $elf.props.SearchBarsend(data);
+      self.props.SearchBarsend(data);
     })
   }
   render() {

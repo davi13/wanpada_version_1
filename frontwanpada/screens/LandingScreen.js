@@ -170,7 +170,6 @@ class LandingScreen extends React.Component {
                   <View style={{flex:1,justifyContent: 'center',alignItems: 'center' }}>
                     <View style={{position: 'absolute', top: 0, right: 0}}>
                       <Icon
-                        raised
                         name='ios-close'
                         type='ionicon'
                         color='#00A6FB'
